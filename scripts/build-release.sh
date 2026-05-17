@@ -3,7 +3,7 @@
 set -euo pipefail
 
 PROJECT="BayouOps"
-VERSION="v0.1.0-EarlyAccess"
+VERSION="v$(cat VERSION)"
 
 STAMP="$(date +%Y%m%d_%H%M%S)"
 
