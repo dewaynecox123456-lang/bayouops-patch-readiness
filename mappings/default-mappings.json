@@ -1,0 +1,70 @@
+{
+  "ComputerName": [
+    "ComputerName",
+    "Hostname",
+    "ServerName",
+    "NodeName",
+    "DeviceName"
+  ],
+
+  "LOB": [
+    "LOB",
+    "BusinessUnit",
+    "Department",
+    "BusinessGroup"
+  ],
+
+  "OSName": [
+    "OSName",
+    "OperatingSystem",
+    "OS",
+    "Platform"
+  ],
+
+  "OwnerName": [
+    "OwnerName",
+    "Owner",
+    "AppOwner",
+    "SystemOwner",
+    "PrimaryOwner"
+  ],
+
+  "WindowsUpdateSvc": [
+    "WindowsUpdateSvc",
+    "WUA",
+    "WindowsUpdate",
+    "WUService"
+  ],
+
+  "BITSService": [
+    "BITSService",
+    "BITS",
+    "BITSStatus"
+  ],
+
+  "RebootPending": [
+    "RebootPending",
+    "PendingReboot",
+    "NeedsReboot"
+  ],
+
+  "PatchWave": [
+    "PatchWave",
+    "Wave",
+    "MaintenanceWave",
+    "PatchGroup"
+  ],
+
+  "ClusterPair": [
+    "ClusterPair",
+    "SQLPair",
+    "FailoverPartner",
+    "NodePair"
+  ],
+
+  "UptimeDays": [
+    "UptimeDays",
+    "Uptime",
+    "DaysUp"
+  ]
+}
