@@ -1,0 +1,4 @@
+ComputerName,LOB,OSName,WindowsUpdateSvc,BITSService,RebootPending,ScanStatus
+SQLFIN01,Finance,Windows Server 2019,Running,Running,True,Success
+SQLFIN02,Finance,Windows Server 2019,Running,Running,False,Success
+WEBHR01,HR,Windows Server 2016,Stopped,Running,False,Warning

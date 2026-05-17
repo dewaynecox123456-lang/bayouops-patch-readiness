@@ -5,7 +5,7 @@
 - CSV inventory import
 - Windows Update service check
 - BITS service check
-- reboot pending detection
+- pending reboot detection
 - OS/build reporting
 - CSV export
 - simple HTML summary
