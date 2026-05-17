@@ -1,80 +1,123 @@
 # BayouOps Patch Readiness
 
-Operational visibility for maintenance windows, governance validation, and readiness scoring.
+<p align="center">
+  <img src="./screenshots/bayouops-logo.png"
+       width="420"
+       alt="BayouOps Logo">
+</p>
 
-> Visibility, not control.
-
-BayouOps transforms infrastructure inventory into:
-
-- operational readiness dashboards
-- governance validation reports
-- executive PDF exports
-- CAB-style maintenance visibility
-- readiness scoring intelligence
-
-Built for operators, not auditors.
+<p align="center">
+Operational visibility tooling for maintenance readiness, governance reporting, and executive operational intelligence.
+</p>
 
 ---
 
-# Operational Readiness Dashboard
+# Visibility, Not Control
 
-[![Operational Readiness Dashboard](./screenshots/operational-readiness-dashboard-v2.png)](./reports/bayouops_readiness_scoring_2026-05-17T04-39-50-532Z.html)
+BayouOps is a lightweight operational visibility platform designed to help:
 
----
+- system administrators
+- infrastructure teams
+- operations leadership
+- CAB reviewers
+- governance stakeholders
 
-# What Problem Does This Solve?
+understand operational readiness before maintenance windows and change activity.
 
-Operational data usually exists everywhere:
+BayouOps does NOT:
+- deploy patches
+- reboot systems
+- remediate endpoints
+- function as an RMM
+- replace Intune/SCCM/BigFix
 
-- spreadsheets
-- patch exports
-- stale inventory
-- CAB notes
-- scattered ownership records
-- incomplete governance tracking
-
-BayouOps helps operational teams quickly identify:
-
-- reboot exposure
-- missing ownership
-- governance gaps
-- duplicate systems
-- stale infrastructure
-- patch-wave conflicts
-- operational readiness risks
-
-before maintenance windows or CAB review.
+BayouOps focuses on:
+- operational readiness
+- governance visibility
+- executive reporting
+- maintenance outcome visibility
+- operational intelligence
 
 ---
 
 # Core Features
 
-## Operational Readiness Scoring
-Generate executive-friendly operational posture scoring.
+## Operational Readiness Dashboards
+- reboot visibility
+- WUA/BITS validation
+- uptime indicators
+- ownership gaps
+- LOB governance checks
 
-## Governance Visibility
-Surface missing ownership, missing LOB alignment, and stale operational metadata.
+## Executive Delta Reporting
+Compare:
+- before maintenance
+- after maintenance
 
-## Flexible Inventory Mapping
-Normalize inconsistent CSV exports from enterprise tooling.
+to demonstrate:
+- operational improvement
+- governance cleanup
+- readiness gains
+- reduction of critical systems
 
-## Executive PDF Export
-Generate printable operational readiness reports.
+## Severity Dashboards
+Highlight:
+- HIGH operational risks
+- WARN conditions
+- INFO findings
 
-## CAB-Friendly Reporting
-Provide maintenance-window visibility without infrastructure modification.
+with executive-friendly reporting.
+
+## PDF Export Support
+Generate:
+- printable dashboards
+- executive summaries
+- CAB-friendly artifacts
+- operational evidence reports
 
 ---
 
-# Example Workflow
+# Example Screenshots
+
+## Operational Readiness Dashboard
+
+![Operational Readiness](./screenshots/operational-readiness-dashboard-v2.png)
+
+---
+
+# Executive Delta Dashboard
+
+![Executive Delta](./screenshots/html-report-preview.png)
+
+---
+
+# Sample Executive PDF
+
+[View Sample Executive PDF](./screenshots/bayouops-readiness-scoring-report.pdf)
+
+---
+
+# Philosophy
+
+BayouOps was built from real-world enterprise operational experience.
+
+The platform focuses on:
+- visibility
+- operational clarity
+- governance awareness
+- maintenance readiness
+- lightweight reporting
+
+instead of:
+- intrusive endpoint control
+- bloated management suites
+- complex infrastructure dependencies
+
+---
+
+# Positioning
+
+BayouOps is best described as:
 
 ```text
-CSV Inventory
-    ↓
-Normalization Engine
-    ↓
-Validation & Governance Checks
-    ↓
-Operational Readiness Scoring
-    ↓
-Executive Dashboard / PDF Export
+Operational Readiness Intelligence
