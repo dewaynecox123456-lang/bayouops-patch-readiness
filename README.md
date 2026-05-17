@@ -1,128 +1,80 @@
 # BayouOps Patch Readiness
 
-BayouOps Patch Readiness is a lightweight operational visibility platform focused on maintenance readiness, governance hygiene, and CAB-friendly operational reporting.
-
-The platform is intentionally:
-
-- read-only
-- lightweight
-- operationally focused
-- exportable
-- CAB-friendly
-- governance aware
-
-BayouOps does NOT:
-
-- patch systems
-- reboot endpoints
-- deploy software
-- modify infrastructure
-- perform remediation actions
-
-Its purpose is visibility, not control.
-
----
-
-## Operational Readiness Dashboard
-
-BayouOps provides operational visibility into:
-
-- maintenance readiness
-- reboot exposure
-- governance gaps
-- inventory hygiene
-- operational drift
-- legacy operating system visibility
-- ownership validation
-
-### Example Dashboard
-
-![Operational Readiness Dashboard](./screenshots/operational-readiness-dashboard-v2.png)
-
----
-
-## Current Visibility Indicators
-
-- Windows Update service status
-- BITS service status
-- reboot pending systems
-- missing ownership metadata
-- missing LOB assignment
-- legacy operating system detection
-- high uptime visibility
-- patch wave visibility
-- duplicate hostname detection
-- operational readiness scoring concepts
-- CAB/export-friendly reporting
-
----
-
-## Design Philosophy
-
-BayouOps follows a simple principle:
+Operational visibility for maintenance windows, governance validation, and readiness scoring.
 
 > Visibility, not control.
 
-The goal is to help operational teams:
+BayouOps transforms infrastructure inventory into:
 
-- identify maintenance blockers
-- reduce CAB friction
-- improve operational awareness
-- simplify audit discussions
-- surface governance issues
-- improve maintenance planning
+- operational readiness dashboards
+- governance validation reports
+- executive PDF exports
+- CAB-style maintenance visibility
+- readiness scoring intelligence
 
-without introducing unnecessary infrastructure risk.
-
----
-
-## Example Use Cases
-
-- CAB preparation
-- patch readiness reviews
-- governance reporting
-- operational hygiene validation
-- maintenance wave planning
-- audit preparation
-- operational readiness exports
-- management visibility dashboards
+Built for operators, not auditors.
 
 ---
 
-## Export Capabilities
+# Operational Readiness Dashboard
 
-Current outputs include:
-
-- HTML dashboards
-- printable operational reports
-- PDF export support through browser print engines
+[![Operational Readiness Dashboard](./screenshots/operational-readiness-dashboard-v2.png)](./reports/bayouops_readiness_scoring_2026-05-17T04-39-50-532Z.html)
 
 ---
 
-## Project Status
+# What Problem Does This Solve?
 
-Current phase:
+Operational data usually exists everywhere:
 
-- MVP operational dashboards
-- inventory normalization engine
-- validation engine
-- severity dashboarding
-- flexible CSV header mapping
-- governance visibility indicators
+- spreadsheets
+- patch exports
+- stale inventory
+- CAB notes
+- scattered ownership records
+- incomplete governance tracking
 
-Future roadmap concepts:
+BayouOps helps operational teams quickly identify:
 
-- operational readiness scoring
-- trend comparison dashboards
-- historical reporting
-- bell/notification UX
-- ServiceNow-friendly export workflows
-- executive summary dashboards
+- reboot exposure
+- missing ownership
+- governance gaps
+- duplicate systems
+- stale infrastructure
+- patch-wave conflicts
+- operational readiness risks
+
+before maintenance windows or CAB review.
 
 ---
 
-## License
+# Core Features
 
-© 2026 BayouOps • BayouFinds.com
+## Operational Readiness Scoring
+Generate executive-friendly operational posture scoring.
 
-All Rights Reserved.
+## Governance Visibility
+Surface missing ownership, missing LOB alignment, and stale operational metadata.
+
+## Flexible Inventory Mapping
+Normalize inconsistent CSV exports from enterprise tooling.
+
+## Executive PDF Export
+Generate printable operational readiness reports.
+
+## CAB-Friendly Reporting
+Provide maintenance-window visibility without infrastructure modification.
+
+---
+
+# Example Workflow
+
+```text
+CSV Inventory
+    ↓
+Normalization Engine
+    ↓
+Validation & Governance Checks
+    ↓
+Operational Readiness Scoring
+    ↓
+Executive Dashboard / PDF Export
