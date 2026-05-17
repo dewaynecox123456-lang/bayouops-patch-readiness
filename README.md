@@ -1,78 +1,128 @@
 # BayouOps Patch Readiness
 
-Read-only operational visibility tooling for Windows patch maintenance readiness.
+BayouOps Patch Readiness is a lightweight operational visibility platform focused on maintenance readiness, governance hygiene, and CAB-friendly operational reporting.
 
-Built from real-world enterprise maintenance window experience where operational visibility and readiness validation are critical before patch execution.
+The platform is intentionally:
 
-Current Version: v0.1.0-alpha
+- read-only
+- lightweight
+- operationally focused
+- exportable
+- CAB-friendly
+- governance aware
 
----
+BayouOps does NOT:
 
-## Dashboard Preview
-
-![Dashboard Preview](./screenshots/html-report-preview.png)
-
----
-
-## Core Philosophy
-
-Visibility, not control.
-
-BayouOps Patch Readiness provides operational indicators for maintenance readiness without modifying infrastructure.
-
-This tool does NOT:
 - patch systems
-- reboot machines
-- modify services
-- remediate systems
-- perform failovers
+- reboot endpoints
+- deploy software
+- modify infrastructure
+- perform remediation actions
 
-It provides visibility so administrators can make informed operational decisions.
-
----
-
-## Current MVP Features
-
-- CSV inventory import
-- Windows Update service visibility
-- BITS service visibility
-- reboot pending detection
-- HTML dashboard reporting
-- inventory hygiene validation
-- operational documentation
+Its purpose is visibility, not control.
 
 ---
 
-## Documentation
+## Operational Readiness Dashboard
 
-- docs/ROADMAP.md
-- docs/CHECKS.md
-- docs/LIMITATIONS.md
-- docs/SAFETY.md
+BayouOps provides operational visibility into:
 
----
+- maintenance readiness
+- reboot exposure
+- governance gaps
+- inventory hygiene
+- operational drift
+- legacy operating system visibility
+- ownership validation
 
-## Safety Principles
+### Example Dashboard
 
-- Do no harm
-- Read-only first
-- Visibility over control
-- Warn, don’t force
-- Document, don’t assume
-
----
-
-## Status
-
-Public MVP / active development phase.
-
-Windows validation required before commercial release.
+![Operational Readiness Dashboard](./screenshots/operational-readiness-dashboard-v2.png)
 
 ---
 
-## Disclaimer
+## Current Visibility Indicators
 
-BayouOps Patch Readiness is an operational visibility aid only.
+- Windows Update service status
+- BITS service status
+- reboot pending systems
+- missing ownership metadata
+- missing LOB assignment
+- legacy operating system detection
+- high uptime visibility
+- patch wave visibility
+- duplicate hostname detection
+- operational readiness scoring concepts
+- CAB/export-friendly reporting
 
-Administrators remain responsible for validating findings and making production decisions.
+---
 
+## Design Philosophy
+
+BayouOps follows a simple principle:
+
+> Visibility, not control.
+
+The goal is to help operational teams:
+
+- identify maintenance blockers
+- reduce CAB friction
+- improve operational awareness
+- simplify audit discussions
+- surface governance issues
+- improve maintenance planning
+
+without introducing unnecessary infrastructure risk.
+
+---
+
+## Example Use Cases
+
+- CAB preparation
+- patch readiness reviews
+- governance reporting
+- operational hygiene validation
+- maintenance wave planning
+- audit preparation
+- operational readiness exports
+- management visibility dashboards
+
+---
+
+## Export Capabilities
+
+Current outputs include:
+
+- HTML dashboards
+- printable operational reports
+- PDF export support through browser print engines
+
+---
+
+## Project Status
+
+Current phase:
+
+- MVP operational dashboards
+- inventory normalization engine
+- validation engine
+- severity dashboarding
+- flexible CSV header mapping
+- governance visibility indicators
+
+Future roadmap concepts:
+
+- operational readiness scoring
+- trend comparison dashboards
+- historical reporting
+- bell/notification UX
+- ServiceNow-friendly export workflows
+- executive summary dashboards
+
+---
+
+## License
+
+© 2026 BayouOps • BayouFinds.com
+
+All Rights Reserved.
