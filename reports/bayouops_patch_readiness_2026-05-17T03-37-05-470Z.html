@@ -1,77 +1,4 @@
-#!/usr/bin/env node
-import fs from "fs";
-import path from "path";
-
-const input = process.argv[2] || "samples/mock-report.csv";
-const outDir = process.argv[3] || "reports";
-
-fs.mkdirSync(outDir, { recursive: true });
-
-function escapeHtml(value = "") {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function parseCsv(text) {
-  const lines = text.trim().split(/\r?\n/);
-  const headers = lines.shift().split(",");
-  return lines.map(line => {
-    const values = line.split(",");
-    return Object.fromEntries(headers.map((h, i) => [h, values[i] ?? ""]));
-  });
-}
-
-function rowStatus(row) {
-  if ((row.ScanStatus || "").toLowerCase() === "failed") return "critical";
-  if (row.WindowsUpdateSvc !== "Running") return "warning";
-  if (row.BITSService !== "Running") return "warning";
-  if (row.RebootPending === "True") return "warning";
-  return "healthy";
-}
-
-function badge(label, status) {
-  return `<span class="badge ${status}">${escapeHtml(label)}</span>`;
-}
-
-const csv = fs.readFileSync(input, "utf8");
-const rows = parseCsv(csv);
-
-const totals = {
-  total: rows.length,
-  healthy: rows.filter(r => rowStatus(r) === "healthy").length,
-  warnings: rows.filter(r => rowStatus(r) === "warning").length,
-  critical: rows.filter(r => rowStatus(r) === "critical").length,
-  rebootPending: rows.filter(r => r.RebootPending === "True").length,
-  wuaIssues: rows.filter(r => r.WindowsUpdateSvc !== "Running").length,
-  bitsIssues: rows.filter(r => r.BITSService !== "Running").length,
-};
-
-const generated = new Date().toLocaleString();
-
-const tableRows = rows.map(r => {
-  const status = rowStatus(r);
-  const statusLabel =
-    status === "healthy" ? "Ready" :
-    status === "warning" ? "Review" :
-    "Failed";
-
-  return `
-    <tr>
-      <td class="server">${escapeHtml(r.ComputerName)}</td>
-      <td>${escapeHtml(r.LOB)}</td>
-      <td>${escapeHtml(r.OSName)}</td>
-      <td>${badge(r.WindowsUpdateSvc || "Unknown", r.WindowsUpdateSvc === "Running" ? "ok" : "warn")}</td>
-      <td>${badge(r.BITSService || "Unknown", r.BITSService === "Running" ? "ok" : "warn")}</td>
-      <td>${badge(r.RebootPending || "Unknown", r.RebootPending === "True" ? "warn" : "ok")}</td>
-      <td>${badge(statusLabel, status === "healthy" ? "ok" : status === "warning" ? "warn" : "bad")}</td>
-    </tr>`;
-}).join("");
-
-const html = `<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -327,7 +254,7 @@ const html = `<!doctype html>
         <div class="tagline">Operational visibility for maintenance windows</div>
       </div>
     </div>
-    <div class="pill">Generated: ${escapeHtml(generated)}</div>
+    <div class="pill">Generated: 5/16/2026, 10:37:05 PM</div>
   </div>
 
   <div class="hero">
@@ -340,12 +267,12 @@ const html = `<!doctype html>
   </div>
 
   <div class="cards">
-    <div class="card info"><div class="num">${totals.total}</div><div class="label">Total Systems</div></div>
-    <div class="card good"><div class="num">${totals.healthy}</div><div class="label">Ready</div></div>
-    <div class="card warn"><div class="num">${totals.warnings}</div><div class="label">Need Review</div></div>
-    <div class="card bad"><div class="num">${totals.critical}</div><div class="label">Failed Scans</div></div>
-    <div class="card warn"><div class="num">${totals.rebootPending}</div><div class="label">Reboot Pending</div></div>
-    <div class="card warn"><div class="num">${totals.wuaIssues}</div><div class="label">WUA Issues</div></div>
+    <div class="card info"><div class="num">3</div><div class="label">Total Systems</div></div>
+    <div class="card good"><div class="num">1</div><div class="label">Ready</div></div>
+    <div class="card warn"><div class="num">2</div><div class="label">Need Review</div></div>
+    <div class="card bad"><div class="num">0</div><div class="label">Failed Scans</div></div>
+    <div class="card warn"><div class="num">1</div><div class="label">Reboot Pending</div></div>
+    <div class="card warn"><div class="num">1</div><div class="label">WUA Issues</div></div>
   </div>
 
   <div class="section-title">
@@ -367,7 +294,34 @@ const html = `<!doctype html>
         </tr>
       </thead>
       <tbody>
-        ${tableRows}
+        
+    <tr>
+      <td class="server">SQLFIN01</td>
+      <td>Finance</td>
+      <td>Windows Server 2019</td>
+      <td><span class="badge ok">Running</span></td>
+      <td><span class="badge ok">Running</span></td>
+      <td><span class="badge warn">True</span></td>
+      <td><span class="badge warn">Review</span></td>
+    </tr>
+    <tr>
+      <td class="server">SQLFIN02</td>
+      <td>Finance</td>
+      <td>Windows Server 2019</td>
+      <td><span class="badge ok">Running</span></td>
+      <td><span class="badge ok">Running</span></td>
+      <td><span class="badge ok">False</span></td>
+      <td><span class="badge ok">Ready</span></td>
+    </tr>
+    <tr>
+      <td class="server">WEBHR01</td>
+      <td>HR</td>
+      <td>Windows Server 2016</td>
+      <td><span class="badge warn">Stopped</span></td>
+      <td><span class="badge ok">Running</span></td>
+      <td><span class="badge ok">False</span></td>
+      <td><span class="badge warn">Review</span></td>
+    </tr>
       </tbody>
     </table>
   </div>
@@ -379,10 +333,4 @@ const html = `<!doctype html>
 
 </div>
 </body>
-</html>`;
-
-const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-const outFile = path.join(outDir, `bayouops_patch_readiness_${stamp}.html`);
-
-fs.writeFileSync(outFile, html);
-console.log(`HTML report created: ${outFile}`);
+</html>
