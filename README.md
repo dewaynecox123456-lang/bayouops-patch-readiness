@@ -1,29 +1,78 @@
 # BayouOps Patch Readiness
 
-BayouOps Patch Readiness is a lightweight, read-only operational visibility tool for Windows patch maintenance windows.
+Read-only operational visibility tooling for Windows patch maintenance readiness.
 
-It is designed to help administrators quickly identify common readiness issues before, during, or after scheduled patch work.
+Built from real-world enterprise maintenance window experience where operational visibility and readiness validation are critical before patch execution.
+
+Current Version: v0.1.0-alpha
+
+---
+
+## Dashboard Preview
+
+![Dashboard Preview](./screenshots/html-report-preview.png)
+
+---
 
 ## Core Philosophy
 
-**Visibility, not control.**
+Visibility, not control.
 
-This tool does not patch systems, reboot machines, modify services, or perform remediation.
+BayouOps Patch Readiness provides operational indicators for maintenance readiness without modifying infrastructure.
 
-It reports operational indicators so administrators can make informed decisions.
+This tool does NOT:
+- patch systems
+- reboot machines
+- modify services
+- remediate systems
+- perform failovers
 
-## Current MVP Checks
+It provides visibility so administrators can make informed operational decisions.
 
-- Windows Update service status
-- BITS service status
-- pending reboot indicators
-- OS name, version, and build
-- uptime
-- CSV report output
+---
 
-## Example Output
+## Current MVP Features
 
-See:
+- CSV inventory import
+- Windows Update service visibility
+- BITS service visibility
+- reboot pending detection
+- HTML dashboard reporting
+- inventory hygiene validation
+- operational documentation
 
-```text
-samples/mock-report.csv
+---
+
+## Documentation
+
+- docs/ROADMAP.md
+- docs/CHECKS.md
+- docs/LIMITATIONS.md
+- docs/SAFETY.md
+
+---
+
+## Safety Principles
+
+- Do no harm
+- Read-only first
+- Visibility over control
+- Warn, don’t force
+- Document, don’t assume
+
+---
+
+## Status
+
+Public MVP / active development phase.
+
+Windows validation required before commercial release.
+
+---
+
+## Disclaimer
+
+BayouOps Patch Readiness is an operational visibility aid only.
+
+Administrators remain responsible for validating findings and making production decisions.
+
