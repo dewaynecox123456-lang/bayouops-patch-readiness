@@ -1,70 +1,4 @@
-#!/usr/bin/env node
-import fs from "fs";
-import path from "path";
 
-const input = process.argv[2] || "samples/mock-report.csv";
-const outDir = process.argv[3] || "reports";
-
-fs.mkdirSync(outDir, { recursive: true });
-
-function parseCsv(text) {
-  const lines = text.trim().split(/\r?\n/);
-  const headers = lines.shift().split(",");
-  return lines.map(line => {
-    const values = line.split(",");
-    return Object.fromEntries(headers.map((h, i) => [h, values[i] ?? ""]));
-  });
-}
-
-const rows = parseCsv(fs.readFileSync(input, "utf8"));
-
-function isLegacyOS(os = "") {
-  return os.includes("2012") || os.includes("2008");
-}
-
-function uptimeRisk(days) {
-  const d = Number(days || 0);
-  if (d >= 180) return "high";
-  if (d >= 90) return "warn";
-  return "ok";
-}
-
-const totals = {
-  total: rows.length,
-  legacy: rows.filter(r => isLegacyOS(r.OSName)).length,
-  reboot: rows.filter(r => r.RebootPending === "True").length,
-  missingLOB: rows.filter(r => !r.LOB).length,
-  missingOwner: rows.filter(r => !r.OwnerName).length,
-  highUptime: rows.filter(r => Number(r.UptimeDays || 0) >= 90).length,
-};
-
-const tableRows = rows.map(r => {
-  const legacy = isLegacyOS(r.OSName);
-  const uptimeClass = uptimeRisk(r.UptimeDays);
-
-  return `
-  <tr>
-    <td>${r.ComputerName}</td>
-    <td>${r.LOB || '<span class="warntext">Missing</span>'}</td>
-    <td>
-      ${r.OSName}
-      ${legacy ? '<span class="pill bad">Legacy</span>' : ''}
-    </td>
-    <td>${r.WindowsUpdateSvc}</td>
-    <td>${r.BITSService}</td>
-    <td>${r.RebootPending}</td>
-    <td>
-      <span class="pill ${uptimeClass}">
-        ${r.UptimeDays} Days
-      </span>
-    </td>
-    <td>${r.OwnerName || '<span class="warntext">Missing</span>'}</td>
-    <td>${r.PatchWave || '<span class="warntext">Missing</span>'}</td>
-  </tr>
-  `;
-}).join("");
-
-const html = `
 <!doctype html>
 <html>
 <head>
@@ -203,32 +137,32 @@ Visibility, not control • Read-only operational visibility
 
 <div class="cards">
   <div class="card">
-    <div class="num">${totals.total}</div>
+    <div class="num">4</div>
     <div class="label">Systems</div>
   </div>
 
   <div class="card">
-    <div class="num">${totals.legacy}</div>
+    <div class="num">1</div>
     <div class="label">Legacy OS</div>
   </div>
 
   <div class="card">
-    <div class="num">${totals.reboot}</div>
+    <div class="num">2</div>
     <div class="label">Reboot Pending</div>
   </div>
 
   <div class="card">
-    <div class="num">${totals.highUptime}</div>
+    <div class="num">2</div>
     <div class="label">High Uptime</div>
   </div>
 
   <div class="card">
-    <div class="num">${totals.missingLOB}</div>
+    <div class="num">1</div>
     <div class="label">Missing LOB</div>
   </div>
 
   <div class="card">
-    <div class="num">${totals.missingOwner}</div>
+    <div class="num">1</div>
     <div class="label">Missing Owner</div>
   </div>
 </div>
@@ -248,7 +182,83 @@ Visibility, not control • Read-only operational visibility
 </tr>
 </thead>
 <tbody>
-${tableRows}
+
+  <tr>
+    <td>SQLFIN01</td>
+    <td>Finance</td>
+    <td>
+      Windows Server 2019
+      
+    </td>
+    <td>Running</td>
+    <td>Running</td>
+    <td>True</td>
+    <td>
+      <span class="pill ok">
+        47 Days
+      </span>
+    </td>
+    <td>Dewayne</td>
+    <td>Odd</td>
+  </tr>
+  
+  <tr>
+    <td>SQLFIN02</td>
+    <td>Finance</td>
+    <td>
+      Windows Server 2019
+      
+    </td>
+    <td>Running</td>
+    <td>Running</td>
+    <td>False</td>
+    <td>
+      <span class="pill ok">
+        12 Days
+      </span>
+    </td>
+    <td>Dewayne</td>
+    <td>Even</td>
+  </tr>
+  
+  <tr>
+    <td>WEBHR01</td>
+    <td>HR</td>
+    <td>
+      Windows Server 2016
+      
+    </td>
+    <td>Stopped</td>
+    <td>Running</td>
+    <td>False</td>
+    <td>
+      <span class="pill warn">
+        128 Days
+      </span>
+    </td>
+    <td><span class="warntext">Missing</span></td>
+    <td>Odd</td>
+  </tr>
+  
+  <tr>
+    <td>LEGACYAPP01</td>
+    <td><span class="warntext">Missing</span></td>
+    <td>
+      Windows Server 2012
+      <span class="pill bad">Legacy</span>
+    </td>
+    <td>Running</td>
+    <td>Stopped</td>
+    <td>True</td>
+    <td>
+      <span class="pill high">
+        365 Days
+      </span>
+    </td>
+    <td>Cheri</td>
+    <td><span class="warntext">Missing</span></td>
+  </tr>
+  
 </tbody>
 </table>
 
@@ -259,11 +269,3 @@ ${tableRows}
 </div>
 </body>
 </html>
-`;
-
-const stamp = new Date().toISOString().replace(/[:.]/g,"-");
-const outfile = path.join(outDir, `bayouops_operational_readiness_${stamp}.html`);
-
-fs.writeFileSync(outfile, html);
-
-console.log(`Created: ${outfile}`);
