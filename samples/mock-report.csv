@@ -1,4 +1,5 @@
-ComputerName,LOB,OSName,WindowsUpdateSvc,BITSService,RebootPending,ScanStatus
-SQLFIN01,Finance,Windows Server 2019,Running,Running,True,Success
-SQLFIN02,Finance,Windows Server 2019,Running,Running,False,Success
-WEBHR01,HR,Windows Server 2016,Stopped,Running,False,Warning
+ComputerName,LOB,OSName,WindowsUpdateSvc,BITSService,RebootPending,ScanStatus,UptimeDays,OwnerName,PatchWave
+SQLFIN01,Finance,Windows Server 2019,Running,Running,True,Success,47,Dewayne,Odd
+SQLFIN02,Finance,Windows Server 2019,Running,Running,False,Success,12,Dewayne,Even
+WEBHR01,HR,Windows Server 2016,Stopped,Running,False,Warning,128,,Odd
+LEGACYAPP01,,Windows Server 2012,Running,Stopped,True,Warning,365,Cheri,

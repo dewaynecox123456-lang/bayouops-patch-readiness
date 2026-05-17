@@ -7,15 +7,6 @@ const outDir = process.argv[3] || "reports";
 
 fs.mkdirSync(outDir, { recursive: true });
 
-function escapeHtml(value = "") {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
 function parseCsv(text) {
   const lines = text.trim().split(/\r?\n/);
   const headers = lines.shift().split(",");
@@ -25,364 +16,218 @@ function parseCsv(text) {
   });
 }
 
-function rowStatus(row) {
-  if ((row.ScanStatus || "").toLowerCase() === "failed") return "critical";
-  if (row.WindowsUpdateSvc !== "Running") return "warning";
-  if (row.BITSService !== "Running") return "warning";
-  if (row.RebootPending === "True") return "warning";
-  return "healthy";
+const rows = parseCsv(fs.readFileSync(input, "utf8"));
+
+function isLegacyOS(os = "") {
+  return os.includes("2012") || os.includes("2008");
 }
 
-function badge(label, status) {
-  return `<span class="badge ${status}">${escapeHtml(label)}</span>`;
+function uptimeRisk(days) {
+  const d = Number(days || 0);
+  if (d >= 180) return "high";
+  if (d >= 90) return "warn";
+  return "ok";
 }
-
-const csv = fs.readFileSync(input, "utf8");
-const rows = parseCsv(csv);
 
 const totals = {
   total: rows.length,
-  healthy: rows.filter(r => rowStatus(r) === "healthy").length,
-  warnings: rows.filter(r => rowStatus(r) === "warning").length,
-  critical: rows.filter(r => rowStatus(r) === "critical").length,
-  rebootPending: rows.filter(r => r.RebootPending === "True").length,
-  wuaIssues: rows.filter(r => r.WindowsUpdateSvc !== "Running").length,
-  bitsIssues: rows.filter(r => r.BITSService !== "Running").length,
+  legacy: rows.filter(r => isLegacyOS(r.OSName)).length,
+  reboot: rows.filter(r => r.RebootPending === "True").length,
+  missingLOB: rows.filter(r => !r.LOB).length,
+  missingOwner: rows.filter(r => !r.OwnerName).length,
+  highUptime: rows.filter(r => Number(r.UptimeDays || 0) >= 90).length,
 };
 
-const generated = new Date().toLocaleString();
-
 const tableRows = rows.map(r => {
-  const status = rowStatus(r);
-  const statusLabel =
-    status === "healthy" ? "Ready" :
-    status === "warning" ? "Review" :
-    "Failed";
+  const legacy = isLegacyOS(r.OSName);
+  const uptimeClass = uptimeRisk(r.UptimeDays);
 
   return `
-    <tr>
-      <td class="server">${escapeHtml(r.ComputerName)}</td>
-      <td>${escapeHtml(r.LOB)}</td>
-      <td>${escapeHtml(r.OSName)}</td>
-      <td>${badge(r.WindowsUpdateSvc || "Unknown", r.WindowsUpdateSvc === "Running" ? "ok" : "warn")}</td>
-      <td>${badge(r.BITSService || "Unknown", r.BITSService === "Running" ? "ok" : "warn")}</td>
-      <td>${badge(r.RebootPending || "Unknown", r.RebootPending === "True" ? "warn" : "ok")}</td>
-      <td>${badge(statusLabel, status === "healthy" ? "ok" : status === "warning" ? "warn" : "bad")}</td>
-    </tr>`;
+  <tr>
+    <td>${r.ComputerName}</td>
+    <td>${r.LOB || '<span class="warntext">Missing</span>'}</td>
+    <td>
+      ${r.OSName}
+      ${legacy ? '<span class="pill bad">Legacy</span>' : ''}
+    </td>
+    <td>${r.WindowsUpdateSvc}</td>
+    <td>${r.BITSService}</td>
+    <td>${r.RebootPending}</td>
+    <td>
+      <span class="pill ${uptimeClass}">
+        ${r.UptimeDays} Days
+      </span>
+    </td>
+    <td>${r.OwnerName || '<span class="warntext">Missing</span>'}</td>
+    <td>${r.PatchWave || '<span class="warntext">Missing</span>'}</td>
+  </tr>
+  `;
 }).join("");
 
-const html = `<!doctype html>
-<html lang="en">
+const html = `
+<!doctype html>
+<html>
 <head>
 <meta charset="utf-8">
-<title>BayouOps Patch Readiness Report</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BayouOps Operational Readiness</title>
 <style>
-  :root {
-    --bg: #07111f;
-    --panel: #111c2d;
-    --panel2: #162235;
-    --border: #26364d;
-    --text: #e8eef8;
-    --muted: #94a3b8;
-    --accent: #38bdf8;
-    --accent2: #22c55e;
-    --warn: #facc15;
-    --bad: #fb7185;
-    --table: #070d18;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    color: var(--text);
-    background:
-      radial-gradient(circle at 20% 0%, rgba(56,189,248,.18), transparent 32%),
-      radial-gradient(circle at 90% 10%, rgba(34,197,94,.12), transparent 30%),
-      linear-gradient(135deg, #050914 0%, var(--bg) 50%, #0b1220 100%);
-    padding: 36px;
-  }
-
-  .wrap {
-    max-width: 1240px;
-    margin: auto;
-  }
-
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    margin-bottom: 28px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #38bdf8, #22c55e);
-    display: grid;
-    place-items: center;
-    color: #03111f;
-    font-weight: 900;
-    box-shadow: 0 0 35px rgba(56,189,248,.25);
-  }
-
-  .brand h1 {
-    margin: 0;
-    font-size: 30px;
-    letter-spacing: -0.04em;
-  }
-
-  .tagline {
-    color: var(--muted);
-    margin-top: 4px;
-    font-size: 14px;
-  }
-
-  .pill {
-    border: 1px solid var(--border);
-    background: rgba(17,28,45,.72);
-    color: #cbd5e1;
-    padding: 10px 14px;
-    border-radius: 999px;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-
-  .hero {
-    border: 1px solid var(--border);
-    background: linear-gradient(135deg, rgba(17,28,45,.96), rgba(15,23,42,.88));
-    border-radius: 22px;
-    padding: 24px;
-    margin-bottom: 22px;
-    box-shadow: 0 24px 80px rgba(0,0,0,.35);
-  }
-
-  .hero-title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .hero-copy {
-    color: var(--muted);
-    line-height: 1.55;
-    max-width: 900px;
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-
-  .card {
-    background: linear-gradient(180deg, var(--panel2), var(--panel));
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 18px;
-    min-height: 112px;
-  }
-
-  .card .num {
-    font-size: 32px;
-    font-weight: 850;
-    letter-spacing: -0.05em;
-  }
-
-  .card .label {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 4px;
-  }
-
-  .card.good { border-top: 3px solid var(--accent2); }
-  .card.warn { border-top: 3px solid var(--warn); }
-  .card.bad { border-top: 3px solid var(--bad); }
-  .card.info { border-top: 3px solid var(--accent); }
-
-  .section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin: 28px 0 12px;
-  }
-
-  .section-title h2 {
-    margin: 0;
-    font-size: 18px;
-  }
-
-  .section-title span {
-    color: var(--muted);
-    font-size: 13px;
-  }
-
-  .table-wrap {
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--table);
-    box-shadow: 0 20px 70px rgba(0,0,0,.28);
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th, td {
-    padding: 15px 14px;
-    border-bottom: 1px solid #172235;
-    text-align: left;
-    font-size: 14px;
-  }
-
-  th {
-    background: #1b283c;
-    color: #cbd5e1;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-  }
-
-  tr:hover td {
-    background: rgba(56,189,248,.045);
-  }
-
-  tr:last-child td {
-    border-bottom: 0;
-  }
-
-  .server {
-    font-weight: 750;
-    color: #f8fafc;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 12px;
-    border: 1px solid transparent;
-  }
-
-  .badge.ok {
-    color: #bbf7d0;
-    background: rgba(34,197,94,.13);
-    border-color: rgba(34,197,94,.25);
-  }
-
-  .badge.warn {
-    color: #fef08a;
-    background: rgba(250,204,21,.12);
-    border-color: rgba(250,204,21,.3);
-  }
-
-  .badge.bad {
-    color: #fecdd3;
-    background: rgba(251,113,133,.13);
-    border-color: rgba(251,113,133,.3);
-  }
-
-  .footer {
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    color: #64748b;
-    font-size: 12px;
-    border-top: 1px solid var(--border);
-    padding-top: 18px;
-  }
-
-  @media (max-width: 1000px) {
-    .cards { grid-template-columns: repeat(2, 1fr); }
-    .topbar { align-items: flex-start; flex-direction: column; }
-    body { padding: 20px; }
-  }
+body{
+  background:#07111f;
+  color:#e6edf7;
+  font-family:Arial,sans-serif;
+  padding:30px;
+}
+.wrap{
+  max-width:1400px;
+  margin:auto;
+}
+h1{
+  margin-bottom:5px;
+}
+.sub{
+  color:#8fa3bf;
+  margin-bottom:25px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+  margin-bottom:25px;
+}
+.card{
+  background:#122036;
+  border:1px solid #26364d;
+  border-radius:18px;
+  padding:18px;
+}
+.num{
+  font-size:32px;
+  font-weight:bold;
+}
+.label{
+  color:#8fa3bf;
+  margin-top:5px;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#081321;
+  border-radius:18px;
+  overflow:hidden;
+}
+th{
+  background:#1a2a40;
+  padding:14px;
+  text-align:left;
+}
+td{
+  padding:14px;
+  border-bottom:1px solid #16263b;
+}
+.pill{
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+}
+.ok{
+  background:#083b2b;
+  color:#9cf5c5;
+}
+.warn{
+  background:#4f3d00;
+  color:#ffe58f;
+}
+.high{
+  background:#4b1220;
+  color:#ffb4c0;
+}
+.bad{
+  background:#4b1220;
+  color:#ffb4c0;
+}
+.warntext{
+  color:#ffd166;
+  font-weight:bold;
+}
+.footer{
+  margin-top:20px;
+  color:#7f92ad;
+  font-size:12px;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="topbar">
-    <div class="brand">
-      <div class="logo">BO</div>
-      <div>
-        <h1>BayouOps Patch Readiness</h1>
-        <div class="tagline">Operational visibility for maintenance windows</div>
-      </div>
-    </div>
-    <div class="pill">Generated: ${escapeHtml(generated)}</div>
+<h1>BayouOps Operational Readiness</h1>
+<div class="sub">
+Visibility, not control • Read-only operational visibility
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="num">${totals.total}</div>
+    <div class="label">Systems</div>
   </div>
 
-  <div class="hero">
-    <div class="hero-title">Visibility, not control.</div>
-    <div class="hero-copy">
-      This report provides read-only operational indicators for patch readiness.
-      It does not patch systems, reboot machines, change services, or remediate infrastructure.
-      Review findings before making production decisions.
-    </div>
+  <div class="card">
+    <div class="num">${totals.legacy}</div>
+    <div class="label">Legacy OS</div>
   </div>
 
-  <div class="cards">
-    <div class="card info"><div class="num">${totals.total}</div><div class="label">Total Systems</div></div>
-    <div class="card good"><div class="num">${totals.healthy}</div><div class="label">Ready</div></div>
-    <div class="card warn"><div class="num">${totals.warnings}</div><div class="label">Need Review</div></div>
-    <div class="card bad"><div class="num">${totals.critical}</div><div class="label">Failed Scans</div></div>
-    <div class="card warn"><div class="num">${totals.rebootPending}</div><div class="label">Reboot Pending</div></div>
-    <div class="card warn"><div class="num">${totals.wuaIssues}</div><div class="label">WUA Issues</div></div>
+  <div class="card">
+    <div class="num">${totals.reboot}</div>
+    <div class="label">Reboot Pending</div>
   </div>
 
-  <div class="section-title">
-    <h2>System Readiness Detail</h2>
-    <span>Read-only assessment output</span>
+  <div class="card">
+    <div class="num">${totals.highUptime}</div>
+    <div class="label">High Uptime</div>
   </div>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Computer</th>
-          <th>LOB</th>
-          <th>OS</th>
-          <th>Windows Update</th>
-          <th>BITS</th>
-          <th>Reboot Pending</th>
-          <th>Readiness</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${tableRows}
-      </tbody>
-    </table>
+  <div class="card">
+    <div class="num">${totals.missingLOB}</div>
+    <div class="label">Missing LOB</div>
   </div>
 
-  <div class="footer">
-    <div>© 2026 BayouOps • BayouFinds.com • Do no harm • Read-only operational visibility</div>
-    <div>Validate findings before production decisions</div>
+  <div class="card">
+    <div class="num">${totals.missingOwner}</div>
+    <div class="label">Missing Owner</div>
   </div>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Computer</th>
+<th>LOB</th>
+<th>OS</th>
+<th>WUA</th>
+<th>BITS</th>
+<th>Reboot</th>
+<th>Uptime</th>
+<th>Owner</th>
+<th>Patch Wave</th>
+</tr>
+</thead>
+<tbody>
+${tableRows}
+</tbody>
+</table>
+
+<div class="footer">
+© 2026 BayouOps • BayouFinds.com • Do no harm • Read-only operational visibility
+</div>
 
 </div>
 </body>
-</html>`;
+</html>
+`;
 
-const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-const outFile = path.join(outDir, `bayouops_patch_readiness_${stamp}.html`);
+const stamp = new Date().toISOString().replace(/[:.]/g,"-");
+const outfile = path.join(outDir, `bayouops_operational_readiness_${stamp}.html`);
 
-fs.writeFileSync(outFile, html);
-console.log(`HTML report created: ${outFile}`);
+fs.writeFileSync(outfile, html);
+
+console.log(`Created: ${outfile}`);
