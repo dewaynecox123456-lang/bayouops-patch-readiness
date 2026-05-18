@@ -1,0 +1,28 @@
+[
+  {
+    "host": "LEGACYAPP01",
+    "severity": "Sev1",
+    "issue": "Unsupported Operating System",
+    "recommendation": "Upgrade OS platform",
+    "owner": "Cheri",
+    "status": "Open"
+  },
+
+  {
+    "host": "WEBHR01",
+    "severity": "Sev1",
+    "issue": "Critical Patch Missing",
+    "recommendation": "Validate patch deployment",
+    "owner": "Unassigned",
+    "status": "Open"
+  },
+
+  {
+    "host": "SQLFIN01",
+    "severity": "Sev2",
+    "issue": "Pending Reboot",
+    "recommendation": "Schedule maintenance reboot",
+    "owner": "Dewayne",
+    "status": "Scheduled"
+  }
+]
