@@ -1,0 +1,27 @@
+[
+  {
+    "file": "20260517_022306_before-cycle.csv",
+    "systems": 4,
+    "readiness": 68
+  },
+  {
+    "file": "20260517_022720_after-cycle.csv",
+    "systems": 4,
+    "readiness": 94
+  },
+  {
+    "file": "20260517_022720_before-cycle.csv",
+    "systems": 4,
+    "readiness": 68
+  },
+  {
+    "file": "20260517_033727_after-cycle.csv",
+    "systems": 4,
+    "readiness": 94
+  },
+  {
+    "file": "20260517_033727_before-cycle.csv",
+    "systems": 4,
+    "readiness": 68
+  }
+]

@@ -93,6 +93,81 @@ const ownerDelta =
 const rebootDelta =
   delta(before.pendingReboots,after.pendingReboots,true);
 
+
+const outcome =
+  after.readiness > before.readiness ? "Improved" :
+  after.readiness < before.readiness ? "Regressed" :
+  "Unchanged";
+
+const outcomeClass =
+  outcome === "Improved" ? "good" :
+  outcome === "Regressed" ? "bad" :
+  "neutral";
+
+const summaryLines = [];
+
+if (after.readiness > before.readiness) {
+  summaryLines.push(`Environment readiness improved by ${after.readiness - before.readiness} percentage points.`);
+} else if (after.readiness < before.readiness) {
+  summaryLines.push(`Environment readiness decreased by ${before.readiness - after.readiness} percentage points.`);
+} else {
+  summaryLines.push("Environment readiness remained unchanged.");
+}
+
+if (after.critical < before.critical) {
+  summaryLines.push(`Critical systems reduced from ${before.critical} to ${after.critical}.`);
+} else if (after.critical > before.critical) {
+  summaryLines.push(`Critical systems increased from ${before.critical} to ${after.critical}.`);
+}
+
+if (after.pendingReboots < before.pendingReboots) {
+  summaryLines.push(`Pending reboot exposure reduced from ${before.pendingReboots} to ${after.pendingReboots}.`);
+} else if (after.pendingReboots > before.pendingReboots) {
+  summaryLines.push(`Pending reboot exposure increased from ${before.pendingReboots} to ${after.pendingReboots}.`);
+}
+
+if (after.missingOwners < before.missingOwners) {
+  summaryLines.push(`Ownership gaps reduced from ${before.missingOwners} to ${after.missingOwners}.`);
+} else if (after.missingOwners > before.missingOwners) {
+  summaryLines.push(`Ownership gaps increased from ${before.missingOwners} to ${after.missingOwners}.`);
+}
+
+const summaryHtml = summaryLines.map(line => `<li>${line}</li>`).join("");
+
+
+const recommendationLines = [];
+
+if (after.critical === 0) {
+  recommendationLines.push("Proceed with staged maintenance rollout.");
+} else {
+  recommendationLines.push("Resolve remaining critical systems before broad deployment.");
+}
+
+if (after.pendingReboots > 0) {
+  recommendationLines.push("Validate reboot completion across remaining endpoints.");
+} else {
+  recommendationLines.push("No pending reboot exposure detected.");
+}
+
+if (after.missingOwners > 0) {
+  recommendationLines.push("Review and assign operational ownership gaps.");
+} else {
+  recommendationLines.push("Operational ownership validation appears complete.");
+}
+
+if (after.readiness >= 90) {
+  recommendationLines.push("Environment readiness is within recommended operational threshold.");
+} else if (after.readiness >= 75) {
+  recommendationLines.push("Environment readiness is acceptable but should continue improving.");
+} else {
+  recommendationLines.push("Environment readiness is below recommended maintenance threshold.");
+}
+
+const recommendationHtml =
+  recommendationLines.map(line => `<li>${line}</li>`).join("");
+
+
+
 const html = `
 <!doctype html>
 <html>
@@ -137,6 +212,67 @@ body{
   padding:24px;
   border:1px solid #223852;
 }
+
+
+.summary{
+  background:#101d31;
+  border:1px solid #263b58;
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:26px;
+}
+
+.summary h2{
+  margin-top:0;
+}
+
+.outcome{
+  display:inline-block;
+  padding:7px 13px;
+  border-radius:999px;
+  font-weight:bold;
+  margin-bottom:14px;
+}
+
+.outcome.good{
+  background:#0d3d31;
+  color:#8ff0c6;
+}
+
+.outcome.bad{
+  background:#5a1515;
+  color:#ff9f9f;
+}
+
+.outcome.neutral{
+  background:#1f2937;
+  color:#d1d5db;
+}
+
+
+.recommendations{
+  background:#101d31;
+  border:1px solid #263b58;
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:26px;
+}
+
+.recommendations h2{
+  margin-top:0;
+}
+
+.recommendations li{
+  margin-bottom:8px;
+  color:#d8e2ef;
+}
+
+
+.summary li{
+  margin-bottom:8px;
+  color:#d8e2ef;
+}
+
 
 .metric{
   font-size:40px;
@@ -217,7 +353,27 @@ Print / Save PDF
 
 </div>
 
+
+<div class="summary">
+<h2>Executive Summary</h2>
+<div class="outcome ${outcomeClass}">
+Maintenance Outcome: ${outcome}
+</div>
+<ul>
+${summaryHtml}
+</ul>
+</div>
+
+
+<div class="recommendations">
+<h2>Recommended Actions</h2>
+<ul>
+${recommendationHtml}
+</ul>
+</div>
+
 <div class="grid">
+
 
 <div class="card">
 
