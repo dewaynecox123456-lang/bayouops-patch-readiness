@@ -1,0 +1,5 @@
+ComputerName,OS,InstalledKB,Version,Owner
+WEBHR01,Windows Server 2019,KB5037765,10.0.17763,Dewayne
+SQLFIN01,Windows Server 2012,KB5021234,6.3.9600,Cheri
+LEGACYAPP01,Windows Server 2008,,6.1.7601,Operations
+APPNODE01,Ubuntu 22.04,openssl-3.0.2,22.04,Dewayne

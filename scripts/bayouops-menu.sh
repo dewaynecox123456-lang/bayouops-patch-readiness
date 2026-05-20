@@ -11,7 +11,7 @@ while true; do
   echo "        BAYOUOPS CONTROL MENU"
   echo "======================================="
   echo
-  echo "[1] Run Demo Workflow"
+  echo "[1] Run Full Operational Cycle"
   echo "[2] Generate Trend Data"
   echo "[3] Generate Trend Dashboard"
   echo "[4] Build Release Package"
@@ -27,7 +27,7 @@ while true; do
     1)
       echo
       echo "[INFO] Running demo workflow..."
-      ./scripts/run-demo.sh
+      node tools/run-operational-cycle.mjs
       ;;
 
     2)
@@ -45,7 +45,7 @@ while true; do
     4)
       echo
       echo "[INFO] Building release package..."
-      ./scripts/run-demo.sh
+      node tools/run-operational-cycle.mjs
       ;;
 
     5)

@@ -19,6 +19,49 @@ function isLegacy(os = '') {
   return os.includes('2012') || os.includes('2008');
 }
 
+
+function formatLabel(filename) {
+  const match = filename.match(
+    /(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})_(.*)\.csv/
+  );
+
+  if (!match) return filename;
+
+  const [
+    _,
+    year,
+    month,
+    day,
+    hour,
+    minute,
+    second,
+    suffix
+  ] = match;
+
+  const label =
+    suffix
+      .replace(/-/g,' ')
+      .replace(/\b\w/g,c=>c.toUpperCase());
+
+  return `${month}/${day} ${hour}:${minute} — ${label}`;
+}
+
+
+
+function classifySeverity(score) {
+
+  if (score < 60) {
+    return 'Sev1';
+  }
+
+  if (score < 85) {
+    return 'Sev2';
+  }
+
+  return 'Sev3';
+}
+
+
 function score(row) {
   let s = 100;
 
@@ -52,10 +95,39 @@ for (const file of files) {
     ? Math.round(rows.reduce((sum, row) => sum + score(row), 0) / rows.length)
     : 0;
 
+  const systems =
+    rows.map(row => {
+      const systemScore = score(row);
+
+      return {
+        host:
+          row.ComputerName ||
+          row.Hostname ||
+          row.Server ||
+          'Unknown',
+
+        score: systemScore,
+
+        severity:
+          classifySeverity(systemScore),
+
+        reboot:
+          row.RebootPending,
+
+        owner:
+          row.Owner || 'Unassigned'
+      };
+    });
+
   trend.push({
     file,
+    label: formatLabel(file),
     systems: rows.length,
-    readiness
+    readiness,
+    worstSystems:
+      systems
+        .sort((a,b)=>a.score-b.score)
+        .slice(0,5)
   });
 }
 

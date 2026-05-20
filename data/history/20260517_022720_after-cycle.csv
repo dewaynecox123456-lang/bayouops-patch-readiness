@@ -1,0 +1,5 @@
+ComputerName,LOB,OS,WUA,BITS,RebootPending,Uptime,Owner
+SQLFIN01,Finance,Windows Server 2019,Running,Running,False,3,Dewayne
+SQLFIN02,Finance,Windows Server 2019,Running,Running,False,4,Dewayne
+WEBHR01,HR,Windows Server 2016,Running,Running,False,8,OperationsTeam
+LEGACYAPP01,LegacyApps,Windows Server 2012,Running,Running,False,14,Cheri

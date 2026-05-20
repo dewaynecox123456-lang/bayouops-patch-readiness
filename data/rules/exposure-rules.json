@@ -1,0 +1,22 @@
+[
+  {
+    "match": "Windows Server 2008",
+    "severity": "Sev1",
+    "issue": "Unsupported Operating System",
+    "recommendation": "Upgrade operating system platform"
+  },
+
+  {
+    "match": "Windows Server 2012",
+    "severity": "Sev2",
+    "issue": "Legacy Operating System",
+    "recommendation": "Plan modernization strategy"
+  },
+
+  {
+    "match": "openssl-3.0.2",
+    "severity": "Sev2",
+    "issue": "Review OpenSSL Exposure",
+    "recommendation": "Validate against current CVE advisories"
+  }
+]

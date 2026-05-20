@@ -3,26 +3,24 @@
     "host": "LEGACYAPP01",
     "severity": "Sev1",
     "issue": "Unsupported Operating System",
-    "recommendation": "Upgrade OS platform",
-    "owner": "Cheri",
+    "recommendation": "Upgrade operating system platform",
+    "owner": "Operations",
     "status": "Open"
   },
-
-  {
-    "host": "WEBHR01",
-    "severity": "Sev1",
-    "issue": "Critical Patch Missing",
-    "recommendation": "Validate patch deployment",
-    "owner": "Unassigned",
-    "status": "Open"
-  },
-
   {
     "host": "SQLFIN01",
     "severity": "Sev2",
-    "issue": "Pending Reboot",
-    "recommendation": "Schedule maintenance reboot",
+    "issue": "Legacy Operating System",
+    "recommendation": "Plan modernization strategy",
+    "owner": "Cheri",
+    "status": "Open"
+  },
+  {
+    "host": "APPNODE01",
+    "severity": "Sev2",
+    "issue": "Review OpenSSL Exposure",
+    "recommendation": "Validate against current CVE advisories",
     "owner": "Dewayne",
-    "status": "Scheduled"
+    "status": "Open"
   }
 ]

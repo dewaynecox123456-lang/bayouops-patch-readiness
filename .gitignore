@@ -1,8 +1,15 @@
-release/
+# Build artifacts
+build/
+
+# Generated reports
+reports/
+
+# Incoming inventory drops
+incoming/
+
+# Node modules
 node_modules/
-*.log
+
+# OS junk
 .DS_Store
-
-tools/*.before-*.mjs
-
-data/history/*.csv
+Thumbs.db
