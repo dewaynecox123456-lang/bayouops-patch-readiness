@@ -25,7 +25,7 @@ const rows = data.map(x => {
   <td>${x.status}</td>
 </tr>
 `;
-}).join('');
+})
 
 const stamp =
   new Date()
@@ -174,7 +174,19 @@ Rapid operational triage • Action-focused incident visibility
 </thead>
 
 <tbody>
-${rows}
+${rows || `
+<tr>
+<td colspan="12" style="
+padding:28px;
+text-align:center;
+color:#9fb3c8;
+font-size:15px;
+">
+Operational posture healthy.<br>
+No active operational findings detected.
+</td>
+</tr>
+`}
 </tbody>
 
 </table>

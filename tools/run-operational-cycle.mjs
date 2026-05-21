@@ -19,6 +19,26 @@ run(
 );
 
 run(
+  'Detecting platform...',
+  './tools/platform-detect.sh'
+);
+
+run(
+  'Collecting reboot intelligence...',
+  './tools/reboot-adapter.sh'
+);
+
+run(
+  'Collecting Linux operational evidence...',
+  './tools/linux-health-collector.sh'
+);
+
+run(
+  'Generating Linux operational findings...',
+  'node tools/linux-findings-engine.mjs'
+);
+
+run(
   'Running exposure correlation...',
   'node tools/exposure-correlation.mjs'
 );
