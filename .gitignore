@@ -13,3 +13,9 @@ node_modules/
 # OS junk
 .DS_Store
 Thumbs.db
+
+# Generated BayouOps artifacts
+reports/
+build/
+exports/
+archive/

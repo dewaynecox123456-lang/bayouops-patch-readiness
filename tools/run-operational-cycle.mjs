@@ -54,6 +54,11 @@ run(
   'node tools/recommendation-engine.mjs'
 );
 
+run(
+  'Enriching operational ownership context...',
+  'node tools/ownership-enrichment.mjs'
+);
+
 
 run(
   'Running context enrichment...',

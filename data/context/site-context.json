@@ -1,0 +1,31 @@
+[
+  {
+    "host": "LEGACYAPP01",
+    "site": "Remote Branch",
+    "floor": "1",
+    "rack": "Closet-01",
+    "local_contact": "Unavailable",
+    "after_hours": "Unavailable",
+    "maintenance_window": "Undefined"
+  },
+
+  {
+    "host": "SQLFIN01",
+    "site": "Baton Rouge Office",
+    "floor": "2",
+    "rack": "Rack-A07",
+    "local_contact": "Sarah Lee",
+    "after_hours": "Limited",
+    "maintenance_window": "Sunday 1AM-4AM"
+  },
+
+  {
+    "host": "APPNODE01",
+    "site": "Houston Data Center",
+    "floor": "3",
+    "rack": "Rack-C12",
+    "local_contact": "Mike Johnson",
+    "after_hours": "Available",
+    "maintenance_window": "Saturday 11PM-2AM"
+  }
+]

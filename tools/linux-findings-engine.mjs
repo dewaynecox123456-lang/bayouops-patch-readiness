@@ -8,6 +8,22 @@ const health =
     )
   );
 
+const platform =
+  JSON.parse(
+    fs.readFileSync(
+      'build/platform/platform.json',
+      'utf8'
+    )
+  );
+
+const reboot =
+  JSON.parse(
+    fs.readFileSync(
+      'build/platform/reboot-state.json',
+      'utf8'
+    )
+  );
+
 const findings = [];
 
 function addFinding(
@@ -19,8 +35,14 @@ function addFinding(
 
   findings.push({
     host: health.hostname,
+
+    platform:
+      platform.platform_family,
+
     severity,
+
     issue,
+
     recommendation: {
       urgency:
         severity === 'Sev1'
@@ -56,9 +78,7 @@ const failed =
     10
   );
 
-if (
-  failed >= 1
-) {
+if (failed >= 1) {
 
   addFinding(
     'Sev2',
@@ -92,36 +112,10 @@ if (
   );
 }
 
-if (
-  health.uptime &&
-  health.uptime.includes('weeks')
-) {
-
-  addFinding(
-    'Sev3',
-    `Extended uptime detected (${health.uptime})`,
-    'Review patching and reboot cadence',
-    'Potential stale runtime state'
-  );
-}
-
-if (
-  health.os &&
-  health.os.includes('Silverblue')
-) {
-
-  addFinding(
-    'Sev3',
-    'Silverblue composefs detected',
-    'Use /var analysis for storage interpretation',
-    'Composefs root usage may produce false positives'
-  );
-}
-
-
 const rootUsage =
   parseInt(
-    (health.root_usage || '0').replace('%',''),
+    (health.root_usage || '0')
+      .replace('%',''),
     10
   );
 
@@ -136,29 +130,29 @@ if (rootUsage >= 85) {
 }
 
 if (
-  health.reboot_required === 'Yes'
+  reboot.reboot_pending === 'Yes'
 ) {
 
   addFinding(
     'Sev2',
     'System reboot pending',
-    'Validate maintenance window and reboot system',
-    'Runtime and patch state divergence'
+    `Review reboot requirement (${reboot.detection_method})`,
+    'Patch and runtime state divergence'
   );
 }
 
 if (
-  health.pending_deployment === 'Yes'
+  health.uptime &&
+  health.uptime.includes('weeks')
 ) {
 
   addFinding(
     'Sev3',
-    'Pending OSTree deployment detected',
-    'Review pending deployment status',
-    'Deployment state awaiting activation'
+    `Extended uptime detected (${health.uptime})`,
+    'Review maintenance and reboot cadence',
+    'Potential stale runtime state'
   );
 }
-
 
 fs.writeFileSync(
   'data/exposure/current-exposure.json',

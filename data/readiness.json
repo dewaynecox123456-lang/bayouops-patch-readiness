@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-05-21T00:00:00Z",
+  "environment": "Demo",
+  "systems": [],
+  "summary": {
+    "totalSystems": 0,
+    "ready": 0,
+    "warning": 0,
+    "critical": 0,
+    "pendingReboot": 0
+  }
+}

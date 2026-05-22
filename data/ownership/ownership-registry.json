@@ -1,0 +1,55 @@
+[
+  {
+    "hostname": "TEST-SERVER-01",
+
+    "infrastructure_owner": "Infrastructure Operations",
+
+    "application_owner": "Prod Control",
+
+    "site": "Dallas DC1",
+
+    "rack_location": "Row B / Rack 12",
+
+    "criticality": "High",
+
+    "maintenance_window": "Sunday 1AM-3AM CST",
+
+    "escalation_contact": "Operations Manager",
+
+    "field_contact": "On-Site Support",
+
+    "reboot_approval_required": true,
+
+    "validation_team": "Prod Control",
+
+    "operational_notes":
+      "Core production scheduling application"
+  },
+
+  {
+    "hostname": "dcox.spectrum.com",
+
+    "infrastructure_owner": "BayouOps Development",
+
+    "application_owner": "BayouOps Development",
+
+    "site": "Louisiana Lab",
+
+    "rack_location": "Workstation",
+
+    "criticality": "Medium",
+
+    "maintenance_window": "Flexible",
+
+    "escalation_contact": "Dewayne",
+
+    "field_contact": "Dewayne",
+
+    "reboot_approval_required": false,
+
+    "validation_team": "BayouOps Development",
+
+    "operational_notes":
+      "Primary BayouOps development workstation"
+  }
+]
