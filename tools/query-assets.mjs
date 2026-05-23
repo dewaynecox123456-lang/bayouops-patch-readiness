@@ -7,19 +7,10 @@ const query =
 if (!query) {
 
   console.log('');
-  console.log(
-    '[ERROR] Missing search query.'
-  );
-
+  console.log('[ERROR] Missing search query.');
   console.log('');
-  console.log(
-    'Usage:'
-  );
-
-  console.log(
-    'node tools/query-assets.mjs <search>'
-  );
-
+  console.log('Usage:');
+  console.log('node tools/query-assets.mjs <search>');
   console.log('');
   process.exit(1);
 }
@@ -69,99 +60,83 @@ if (results.length === 1) {
 
   console.log('');
 
-  console.log(
-`Site: ${x.site}`
-  );
+  console.log(`Site: ${x.site}`);
+  console.log(`Floor: ${x.floor}`);
+  console.log(`Rack: ${x.rack_location}`);
+  console.log(`Environment: ${x.environment}`);
+  console.log(`Platform: ${x.platform}`);
 
-  console.log(
-`Floor: ${x.floor}`
-  );
+  console.log('');
 
-  console.log(
-`Rack: ${x.rack_location}`
-  );
+  console.log('Infrastructure Owner:');
+  console.log(x.infrastructure_owner);
 
-  console.log(
-`Environment: ${x.environment}`
-  );
+  console.log('');
 
+  console.log('Application Owner:');
+  console.log(x.application_owner);
+
+  console.log('');
+
+  console.log('Validation Team:');
+  console.log(x.validation_team);
+
+  console.log('');
+
+  console.log('Maintenance Window:');
+  console.log(x.maintenance_window);
+
+  console.log('');
+
+  console.log('Escalation Contact:');
+  console.log(x.escalation_contact);
+
+  console.log('');
+
+  console.log('PCI Scope:');
   console.log(
-`Platform: ${x.platform}`
+    x.pci_scope
+      ? 'Yes'
+      : 'No'
   );
 
   console.log('');
 
+  console.log('Operational Notes:');
   console.log(
-'Infrastructure Owner:'
-  );
-
-  console.log(
-x.infrastructure_owner
+    x.operational_notes || 'None'
   );
 
   console.log('');
 
-  console.log(
-'Application Owner:'
-  );
+  const noteFile =
+    `data/notes/${x.hostname}.md`;
 
-  console.log(
-x.application_owner
-  );
+  if (fs.existsSync(noteFile)) {
 
-  console.log('');
+    console.log(
+'========================================'
+    );
 
-  console.log(
-'Validation Team:'
-  );
+    console.log(
+'ATTACHED OPERATIONAL PROCEDURES'
+    );
 
-  console.log(
-x.validation_team
-  );
+    console.log(
+'========================================'
+    );
 
-  console.log('');
+    console.log('');
 
-  console.log(
-'Maintenance Window:'
-  );
+    console.log(
+      fs.readFileSync(
+        noteFile,
+        'utf8'
+      )
+    );
 
-  console.log(
-x.maintenance_window
-  );
-
-  console.log('');
-
-  console.log(
-'Escalation Contact:'
-  );
-
-  console.log(
-x.escalation_contact
-  );
-
-  console.log('');
-
-  console.log(
-'PCI Scope:'
-  );
-
-  console.log(
-x.pci_scope
-  ? 'Yes'
-  : 'No'
-  );
-
-  console.log('');
-
-  console.log(
-'Operational Notes:'
-  );
-
-  console.log(
-x.operational_notes || 'None'
-  );
-
-  console.log('');
+    console.log('');
+  }
 
 } else {
 
