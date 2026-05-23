@@ -1,55 +1,50 @@
 [
   {
-    "hostname": "TEST-SERVER-01",
-
-    "infrastructure_owner": "Infrastructure Operations",
-
+    "hostname": "SQL-PROD-01",
+    "infrastructure_owner": "Infrastructure Ops",
     "application_owner": "Prod Control",
-
     "site": "Dallas DC1",
-
-    "rack_location": "Row B / Rack 12",
-
-    "criticality": "High",
-
-    "maintenance_window": "Sunday 1AM-3AM CST",
-
+    "floor": "Floor2",
+    "rack_location": "Rack12",
+    "environment": "Production",
+    "platform": "VMware",
+    "maintenance_window": "Sunday 1AM-3AM",
     "escalation_contact": "Operations Manager",
-
-    "field_contact": "On-Site Support",
-
-    "reboot_approval_required": true,
-
     "validation_team": "Prod Control",
-
-    "operational_notes":
-      "Core production scheduling application"
+    "pci_scope": true,
+    "reboot_approval_required": true,
+    "operational_notes": "Core production scheduling"
   },
-
   {
-    "hostname": "dcox.spectrum.com",
-
-    "infrastructure_owner": "BayouOps Development",
-
-    "application_owner": "BayouOps Development",
-
-    "site": "Louisiana Lab",
-
-    "rack_location": "Workstation",
-
-    "criticality": "Medium",
-
-    "maintenance_window": "Flexible",
-
-    "escalation_contact": "Dewayne",
-
-    "field_contact": "Dewayne",
-
-    "reboot_approval_required": false,
-
-    "validation_team": "BayouOps Development",
-
-    "operational_notes":
-      "Primary BayouOps development workstation"
+    "hostname": "WEB-APP-01",
+    "infrastructure_owner": "Application Team",
+    "application_owner": "Web Operations",
+    "site": "Dallas DC1",
+    "floor": "Floor1",
+    "rack_location": "Rack08",
+    "environment": "Production",
+    "platform": "VMware",
+    "maintenance_window": "Saturday 11PM-1AM",
+    "escalation_contact": "Web Manager",
+    "validation_team": "Web Operations",
+    "pci_scope": false,
+    "reboot_approval_required": true,
+    "operational_notes": "Customer-facing web platform"
+  },
+  {
+    "hostname": "FILE-SRV-01",
+    "infrastructure_owner": "Infrastructure Ops",
+    "application_owner": "Infrastructure Ops",
+    "site": "Houston Office",
+    "floor": "Floor1",
+    "rack_location": "Rack02",
+    "environment": "Production",
+    "platform": "Physical",
+    "maintenance_window": "Friday 10PM-12AM",
+    "escalation_contact": "Infrastructure Manager",
+    "validation_team": "Infrastructure Ops",
+    "pci_scope": false,
+    "reboot_approval_required": true,
+    "operational_notes": "Primary departmental file storage"
   }
 ]

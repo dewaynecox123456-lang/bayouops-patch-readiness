@@ -1,0 +1,4 @@
+Hostname,Site,Floor,Rack,Environment,Platform,OperationalOwner,ApplicationOwner,ValidationTeam,MaintenanceWindow,EscalationContact,PCI,Notes
+SQL-PROD-01,Dallas DC1,Floor2,Rack12,Production,VMware,Infrastructure Ops,Prod Control,Prod Control,Sunday 1AM-3AM,Operations Manager,Yes,Core production scheduling
+WEB-APP-01,Dallas DC1,Floor1,Rack08,Production,VMware,Application Team,Web Operations,Web Operations,Saturday 11PM-1AM,Web Manager,No,Customer-facing web platform
+FILE-SRV-01,Houston Office,Floor1,Rack02,Production,Physical,Infrastructure Ops,Infrastructure Ops,Infrastructure Ops,Friday 10PM-12AM,Infrastructure Manager,No,Primary departmental file storage

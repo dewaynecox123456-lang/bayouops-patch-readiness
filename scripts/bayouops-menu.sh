@@ -2,13 +2,12 @@
 
 set -euo pipefail
 
-clear
+cd /var/home/dewaynecox/BayouFinds/projects/bayouops-patch-readiness
 
 while true; do
-
-  echo
+  clear
   echo "======================================="
-  echo "        BAYOUOPS CONTROL MENU"
+  echo "          BAYOUOPS CONTROL MENU"
   echo "======================================="
   echo
   echo "[1] Run Full Operational Cycle"
@@ -17,60 +16,62 @@ while true; do
   echo "[4] Build Release Package"
   echo "[5] Exposure Check (placeholder)"
   echo
+  echo "[7] Import Operational Context CSV"
+  echo "[8] Asset Lookup"
   echo "[Q] Quit"
   echo
-
   read -rp "Select Option: " choice
 
   case "$choice" in
-
     1)
-      echo
-      echo "[INFO] Running demo workflow..."
       node tools/run-operational-cycle.mjs
+      read -rp "Press ENTER to continue..."
       ;;
 
     2)
-      echo
-      echo "[INFO] Generating trend data..."
       node tools/generate-trend-data.mjs
+      read -rp "Press ENTER to continue..."
       ;;
 
     3)
-      echo
-      echo "[INFO] Generating trend dashboard..."
       node tools/generate-trend-dashboard.mjs
+      read -rp "Press ENTER to continue..."
       ;;
 
     4)
       echo
-      echo "[INFO] Building release package..."
-      node tools/run-operational-cycle.mjs
+      echo "[INFO] Build release package placeholder..."
+      read -rp "Press ENTER to continue..."
       ;;
 
     5)
       echo
-      echo "[INFO] Running exposure visibility..."
-      node tools/exposure-check.mjs
+      echo "[INFO] Exposure placeholder..."
+      read -rp "Press ENTER to continue..."
+      ;;
+
+    7)
+      echo
+      read -rp "CSV path: " CSV_PATH
+      node tools/import-operational-context.mjs "$CSV_PATH"
+      read -rp "Press ENTER to continue..."
+      ;;
+
+    8)
+      echo
+      read -rp "Search asset: " ASSET_QUERY
+      node tools/query-assets.mjs "$ASSET_QUERY"
+      read -rp "Press ENTER to continue..."
       ;;
 
     q|Q)
-      echo
-      echo "[INFO] Exiting BayouOps."
-      echo
       exit 0
       ;;
 
     *)
       echo
       echo "[WARN] Invalid option."
+      read -rp "Press ENTER to continue..."
       ;;
-
   esac
-
-  echo
-  read -rp "Press ENTER to continue..."
-
-  clear
-
 done

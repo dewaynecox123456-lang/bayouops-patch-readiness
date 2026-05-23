@@ -59,6 +59,11 @@ run(
   'node tools/ownership-enrichment.mjs'
 );
 
+run(
+  'Scoring operational readiness...',
+  'node tools/readiness-scoring-engine.mjs'
+);
+
 
 run(
   'Running context enrichment...',

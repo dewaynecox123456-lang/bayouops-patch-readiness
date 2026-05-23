@@ -2,15 +2,23 @@ import fs from 'fs';
 
 const findings = JSON.parse(
   fs.readFileSync(
-    'data/exposure/current-exposure.json',
+    'build/enriched-findings.json',
+    'utf8'
+  )
+);
+
+const readinessData = JSON.parse(
+  fs.readFileSync(
+    'build/readiness/operational-readiness.json',
     'utf8'
   )
 );
 
 const readiness =
-  findings.length === 0
-    ? 100
-    : Math.max(0, 100 - findings.length * 10);
+  readinessData.readiness_score ?? 100;
+
+const posture =
+  readinessData.posture ?? 'Healthy';
 
 const critical =
   findings.filter(f => f.severity === 'Sev1').length;
@@ -132,6 +140,7 @@ risk posture, unsupported systems, and remediation visibility.
 <div class="metric">
 <h2>${readiness}%</h2>
 <div>Operational Readiness</div>
+<div style="color:#9fb3c8;margin-top:6px;">${posture}</div>
 </div>
 
 <div class="metric">
