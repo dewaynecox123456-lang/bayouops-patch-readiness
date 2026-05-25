@@ -1,4 +1,4 @@
-# BayouOps Patch Readiness
+# BayouOps
 
 <p align="center">
   <img src="./screenshots/bayouops-logo.png"
@@ -7,117 +7,69 @@
 </p>
 
 <p align="center">
-Operational visibility tooling for maintenance readiness, governance reporting, and executive operational intelligence.
+Operational Coordination Intelligence for Infrastructure Teams
 </p>
 
 ---
 
-# Visibility, Not Control
+# What Is BayouOps?
 
-BayouOps is a lightweight operational visibility platform designed to help:
+BayouOps is a lightweight operational coordination platform designed to help infrastructure teams understand the operational footprint of their systems before outages, maintenance events, and bridge calls become chaotic.
 
-- system administrators
-- infrastructure teams
-- operations leadership
-- CAB reviewers
-- governance stakeholders
+BayouOps focuses on:
 
-understand operational readiness before maintenance windows and change activity.
+- operational readiness
+- operational ownership
+- maintenance governance
+- operational visibility
+- escalation coordination
+- operational memory
+- field operational awareness
+
+The platform is intentionally lightweight, local-first, and operationally practical.
+
+---
+
+# What BayouOps Is NOT
+
+BayouOps is NOT:
+
+- SCCM
+- Intune
+- BigFix
+- an RMM
+- a SIEM
+- a vulnerability scanner
+- endpoint control software
+- intrusive monitoring software
 
 BayouOps does NOT:
 - deploy patches
-- reboot systems
+- force reboots
 - remediate endpoints
-- function as an RMM
-- replace Intune/SCCM/BigFix
+- manage endpoint policies
+- replace enterprise management platforms
 
-BayouOps focuses on:
-- operational readiness
-- governance visibility
-- executive reporting
-- maintenance outcome visibility
-- operational intelligence
+BayouOps exists to provide operational coordination intelligence.
 
 ---
 
-# Core Features
+# Core Workflow
 
-## Operational Readiness Dashboards
-- reboot visibility
-- WUA/BITS validation
-- uptime indicators
-- ownership gaps
-- LOB governance checks
-
-## Executive Delta Reporting
-Compare:
-- before maintenance
-- after maintenance
-
-to demonstrate:
-- operational improvement
-- governance cleanup
-- readiness gains
-- reduction of critical systems
-
-## Severity Dashboards
-Highlight:
-- HIGH operational risks
-- WARN conditions
-- INFO findings
-
-with executive-friendly reporting.
-
-## PDF Export Support
-Generate:
-- printable dashboards
-- executive summaries
-- CAB-friendly artifacts
-- operational evidence reports
+1. Import operational context from CSV.
+2. Search infrastructure assets.
+3. View operational ownership and governance context.
+4. Review maintenance windows and escalation paths.
+5. Access operational procedures and runbook notes.
+6. Export operational worklists for coordination.
 
 ---
 
-# Example Screenshots
+# Operational Asset Lookup
 
-## Operational Readiness Dashboard
+BayouOps supports operational infrastructure lookup workflows.
 
-![Operational Readiness](./screenshots/operational-readiness-dashboard-v2.png)
+Example:
 
----
-
-# Executive Delta Dashboard
-
-![Executive Delta](./screenshots/html-report-preview.png)
-
----
-
-# Sample Executive PDF
-
-[View Sample Executive PDF](./screenshots/bayouops-readiness-scoring-report.pdf)
-
----
-
-# Philosophy
-
-BayouOps was built from real-world enterprise operational experience.
-
-The platform focuses on:
-- visibility
-- operational clarity
-- governance awareness
-- maintenance readiness
-- lightweight reporting
-
-instead of:
-- intrusive endpoint control
-- bloated management suites
-- complex infrastructure dependencies
-
----
-
-# Positioning
-
-BayouOps is best described as:
-
-```text
-Operational Readiness Intelligence
+```bash
+node tools/query-assets.mjs SQL-PROD-01
