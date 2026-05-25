@@ -28,6 +28,28 @@ BayouOps focuses on:
 
 The platform is intentionally lightweight, local-first, and operationally practical.
 
+## Local-First Operation
+
+BayouOps runs from local scripts and local files. Inventory imports, generated reports, exports, and operational snapshots stay in the working directory unless an operator intentionally moves or publishes them.
+
+Runtime host and port can be overridden with environment variables:
+
+```bash
+BAYOUOPS_HOST=127.0.0.1 BAYOUOPS_PORT=8088 npm run serve
+```
+
+Operators may also copy `config/bayouops.env.example` to `config/bayouops.env` for local settings. Local runtime overrides should not be committed.
+
+## Operational Safety Philosophy
+
+BayouOps is designed for visibility, coordination, and decision support. It does not patch systems, reboot systems, modify services, change registry values, enforce policies, or perform remediation.
+
+Generated reports may contain hostnames, ownership details, maintenance windows, escalation contacts, and operational posture. Treat those outputs as operationally sensitive.
+
+## Default Loopback Bind
+
+Local serving defaults to `127.0.0.1` so dashboards are available to the operator on the local machine without exposing reports to the wider network. Use a broader bind address only when there is a deliberate operational reason and the surrounding network controls are understood.
+
 ---
 
 # What BayouOps Is NOT
