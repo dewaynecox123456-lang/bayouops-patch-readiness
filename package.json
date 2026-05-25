@@ -1,0 +1,13 @@
+{
+  "name": "bayouops-patch-readiness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first operational readiness intelligence tooling for infrastructure teams.",
+  "type": "module",
+  "scripts": {
+    "start": "./scripts/bayouops-start.sh",
+    "serve": "python3 -m http.server 8088 --bind 127.0.0.1",
+    "test": "bash -n scripts/*.sh && find tools -name '*.mjs' -print0 | xargs -0 -n1 node --check",
+    "build-release": "./scripts/build-release.sh"
+  }
+}
