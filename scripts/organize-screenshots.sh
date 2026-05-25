@@ -2,9 +2,11 @@
 
 set -euo pipefail
 
-ROOT="/var/home/dewaynecox/BayouFinds/projects/bayouops-patch-readiness"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 PIC="$HOME/Pictures"
 
+# Use the current clone location instead of a user-specific absolute path.
 cd "$ROOT"
 
 mkdir -p screenshots

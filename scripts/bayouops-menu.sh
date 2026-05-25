@@ -2,7 +2,11 @@
 
 set -euo pipefail
 
-cd /var/home/dewaynecox/BayouFinds/projects/bayouops-patch-readiness
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Resolve the project root dynamically so local operator clones do not depend on one workstation path.
+cd "$PROJECT_ROOT"
 
 while true; do
   clear

@@ -2,9 +2,11 @@
 
 set -euo pipefail
 
-ROOT="/var/home/dewaynecox/BayouFinds/projects/bayouops-patch-readiness"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 STAMP="$(date +%Y%m%d_%H%M%S)"
 
+# Derive ROOT from this script location to keep maintenance behavior consistent across clones.
 cd "$ROOT"
 
 echo
