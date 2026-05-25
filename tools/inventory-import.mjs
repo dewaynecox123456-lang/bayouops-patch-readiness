@@ -40,19 +40,58 @@ function latestCsv(folder) {
 function parseCsv(text) {
 
   const lines =
-    text.trim().split(/\r?\n/);
+    text.trim()
+      .split(/\r?\n/)
+      .filter(line => line.trim());
+
+  if (!lines.length) {
+
+    throw new Error(
+      'CSV file is empty.'
+    );
+  }
 
   const headers =
-    lines.shift().split(',');
+    lines.shift()
+      .split(',')
+      .map(h => h.trim());
 
-  return lines.map(line => {
+  const uniqueHeaders =
+    new Set(headers);
+
+  if (
+    headers.some(h => !h)
+    || uniqueHeaders.size !== headers.length
+  ) {
+
+    throw new Error(
+      'CSV header row must contain unique non-empty column names.'
+    );
+  }
+
+  if (!headers.includes('ComputerName')) {
+
+    throw new Error(
+      'CSV inventory must include a ComputerName column.'
+    );
+  }
+
+  return lines.map((line, index) => {
 
     const values =
       line.split(',');
 
+    if (values.length > headers.length) {
+
+      // Keep validation conservative: fail only when a row has extra columns the current parser cannot map safely.
+      throw new Error(
+        `CSV row ${index + 2} has more columns than the header row.`
+      );
+    }
+
     return Object.fromEntries(
       headers.map((h, i) => [
-        h.trim(),
+        h,
         values[i]?.trim() || ''
       ])
     );
@@ -74,8 +113,22 @@ const raw =
     'utf8'
   );
 
-const inventory =
-  parseCsv(raw);
+let inventory;
+
+try {
+
+  inventory =
+    parseCsv(raw);
+
+} catch (error) {
+
+  console.log('');
+  console.log(
+    `[ERROR] ${error.message}`
+  );
+  console.log('');
+  process.exit(1);
+}
 
 fs.mkdirSync(
   'build/inventory',

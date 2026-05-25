@@ -41,27 +41,97 @@ const raw =
   );
 
 const lines =
-  raw.trim().split('\n');
+  raw.trim()
+    .split(/\r?\n/)
+    .filter(line => line.trim());
+
+if (!lines.length) {
+
+  console.log('');
+  console.log(
+    '[ERROR] CSV file is empty.'
+  );
+  console.log('');
+  process.exit(1);
+}
 
 const header =
   lines.shift()
-    .split(',');
+    .split(',')
+    .map(h => h.trim());
+
+const requiredColumns = [
+  'Hostname',
+  'Environment'
+];
+
+const uniqueHeader =
+  new Set(header);
+
+if (
+  header.some(h => !h)
+  || uniqueHeader.size !== header.length
+) {
+
+  console.log('');
+  console.log(
+    '[ERROR] CSV header row must contain unique non-empty column names.'
+  );
+  console.log('');
+  process.exit(1);
+}
+
+const missingColumns =
+  requiredColumns.filter(
+    column => !header.includes(column)
+  );
+
+if (missingColumns.length) {
+
+  console.log('');
+  console.log(
+    `[ERROR] Missing required CSV columns: ${missingColumns.join(', ')}`
+  );
+  console.log('');
+  process.exit(1);
+}
 
 const records = [];
 
-for (const line of lines) {
+for (const [index, line] of lines.entries()) {
 
   const cols =
     line.split(',');
+
+  if (cols.length > header.length) {
+
+    // Extra columns are rejected because this lightweight parser does not support quoted commas.
+    console.log('');
+    console.log(
+      `[ERROR] CSV row ${index + 2} has more columns than the header row.`
+    );
+    console.log('');
+    process.exit(1);
+  }
 
   const row = {};
 
   header.forEach(
     (h, i) => {
-      row[h.trim()] =
+      row[h] =
         cols[i]?.trim() || '';
     }
   );
+
+  if (!row.Hostname) {
+
+    console.log('');
+    console.log(
+      `[ERROR] CSV row ${index + 2} is missing Hostname.`
+    );
+    console.log('');
+    process.exit(1);
+  }
 
   records.push({
 
