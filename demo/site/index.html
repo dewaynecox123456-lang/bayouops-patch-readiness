@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BayouOps DEMO Environment Showcase</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="demo-banner">DEMO ENVIRONMENT</div>
+      <h1>BayouOps Operational Readiness Showcase</h1>
+      <p>
+        Static demo view using synthetic BayouOps datasets for executive summaries,
+        analyst review, and export/report storytelling.
+      </p>
+    </div>
+    <nav aria-label="Demo sections">
+      <a href="#executive">Executive</a>
+      <a href="#readiness">Readiness</a>
+      <a href="#patch">Patch</a>
+      <a href="#ssl">SSL</a>
+      <a href="#unsupported">Unsupported</a>
+      <a href="#stale">Stale</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="executive" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Executive Overview</span>
+          <h2>Readiness scenarios from DEMO data</h2>
+        </div>
+        <p>
+          Three synthetic scenarios show how BayouOps frames operational posture
+          without claiming automated remediation.
+        </p>
+      </div>
+      <div id="scenarioGrid" class="scenario-grid" aria-live="polite"></div>
+      <div class="screenshot-row">
+        <div class="screenshot-slot">
+          <span>Screenshot placeholder</span>
+          <strong>Executive critical-risk dashboard</strong>
+          <small>Recommended: 1440 x 900</small>
+        </div>
+        <div class="screenshot-slot">
+          <span>Screenshot placeholder</span>
+          <strong>Executive healthy-state dashboard</strong>
+          <small>Recommended: 1440 x 900</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="readiness" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Operational Readiness</span>
+          <h2>System readiness scorecard</h2>
+        </div>
+        <p>
+          DEMO readiness rows combine patch, SSL, exposure, ownership, and
+          staleness signals into a concise status.
+        </p>
+      </div>
+      <div id="readinessSummary" class="metric-grid"></div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Hostname</th>
+              <th>Environment</th>
+              <th>Score</th>
+              <th>Status</th>
+              <th>Summary</th>
+            </tr>
+          </thead>
+          <tbody id="readinessRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="patch" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Patch Compliance</span>
+          <h2>Patch drift and reboot coordination</h2>
+        </div>
+        <p>
+          Highlights systems with patch drift, missing security updates, and
+          pending reboot states requiring operator coordination.
+        </p>
+      </div>
+      <div id="patchSummary" class="metric-grid"></div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Hostname</th>
+              <th>Compliance</th>
+              <th>Critical Missing</th>
+              <th>Security Missing</th>
+              <th>Pending Reboot</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="patchRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="ssl" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">SSL Risk</span>
+          <h2>Certificate expiration posture</h2>
+        </div>
+        <p>
+          SSL status is presented as operational coordination work: owner,
+          service, expiration window, and recommended action.
+        </p>
+      </div>
+      <div id="sslSummary" class="metric-grid"></div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Hostname</th>
+              <th>Days</th>
+              <th>Status</th>
+              <th>Owner</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="sslRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="unsupported" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Unsupported Systems</span>
+          <h2>Migration and risk acceptance candidates</h2>
+        </div>
+        <p>
+          Unsupported systems are shown as planning items that require ownership,
+          migration, isolation, or explicit risk decisions.
+        </p>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Hostname</th>
+              <th>OS</th>
+              <th>Owner</th>
+              <th>Operational Risk</th>
+              <th>Target</th>
+            </tr>
+          </thead>
+          <tbody id="unsupportedRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="stale" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Stale Infrastructure</span>
+          <h2>Old check-ins and stale ownership validation</h2>
+        </div>
+        <p>
+          Stale data creates uncertainty. This section highlights records that
+          need owner validation, scan refresh, or inventory cleanup.
+        </p>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Hostname</th>
+              <th>Days Since Seen</th>
+              <th>Patch Scan Age</th>
+              <th>Owner Validation Age</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody id="staleRows"></tbody>
+        </table>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-slot">
+          <span>Screenshot placeholder</span>
+          <strong>Owner worklist export</strong>
+          <small>Recommended: 1280 x 900</small>
+        </div>
+        <div class="screenshot-slot">
+          <span>Screenshot placeholder</span>
+          <strong>Terminal asset lookup</strong>
+          <small>Recommended: 1200 x 800</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>DEMO DATA ONLY.</strong>
+    BayouOps is visibility and coordination tooling. This static showcase does
+    not patch, reboot, remediate, scan production systems, or contact a backend.
+  </footer>
+
+  <script src="./demo.js"></script>
+</body>
+</html>
