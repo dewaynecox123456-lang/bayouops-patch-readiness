@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEMO BayouOps Executive Dashboard Scenarios</title>
+<style>
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #182233;
+  font-family: Arial, sans-serif;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.label {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 8px 0 6px;
+  font-size: 32px;
+}
+
+.sub {
+  color: #526175;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #dbe3ef;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 12px 28px rgba(22, 34, 51, .08);
+}
+
+.card.healthy {
+  border-top: 6px solid #10b981;
+}
+
+.card.review {
+  border-top: 6px solid #f59e0b;
+}
+
+.card.critical {
+  border-top: 6px solid #ef4444;
+}
+
+.score {
+  font-size: 48px;
+  font-weight: 800;
+  margin: 16px 0 8px;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.healthy .status {
+  background: #10b981;
+}
+
+.review .status {
+  background: #f59e0b;
+}
+
+.critical .status {
+  background: #ef4444;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.metric {
+  background: #f8fafc;
+  border: 1px solid #e5edf7;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.metric strong {
+  display: block;
+  font-size: 20px;
+}
+
+.metric span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.note {
+  color: #475569;
+  line-height: 1.4;
+  margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="label">DEMO DATA - BayouOps</div>
+  <h1>Executive Operational Readiness Scenarios</h1>
+  <div class="sub">Synthetic dashboard scenarios for healthy, medium-risk, and critical-risk environments.</div>
+
+  <section class="grid" aria-label="DEMO executive scenarios">
+    <article class="card healthy">
+      <div class="label">DEMO Scenario</div>
+      <h2>Healthy Environment</h2>
+      <div class="score">95%</div>
+      <span class="status">Healthy</span>
+      <div class="metrics">
+        <div class="metric"><strong>8</strong><span>Systems</span></div>
+        <div class="metric"><strong>97%</strong><span>Patch Compliance</span></div>
+        <div class="metric"><strong>0</strong><span>Critical Findings</span></div>
+        <div class="metric"><strong>0</strong><span>Unsupported OS</span></div>
+      </div>
+      <p class="note">Production systems are within readiness target. Normal maintenance cadence can proceed.</p>
+    </article>
+
+    <article class="card review">
+      <div class="label">DEMO Scenario</div>
+      <h2>Medium-Risk Environment</h2>
+      <div class="score">78%</div>
+      <span class="status">Review</span>
+      <div class="metrics">
+        <div class="metric"><strong>12</strong><span>Systems</span></div>
+        <div class="metric"><strong>87%</strong><span>Patch Compliance</span></div>
+        <div class="metric"><strong>2</strong><span>Stale Systems</span></div>
+        <div class="metric"><strong>1</strong><span>Unsupported OS</span></div>
+      </div>
+      <p class="note">Patch drift and stale ownership validation require owner follow-up before the next maintenance wave.</p>
+    </article>
+
+    <article class="card critical">
+      <div class="label">DEMO Scenario</div>
+      <h2>Critical-Risk Environment</h2>
+      <div class="score">46%</div>
+      <span class="status">Critical</span>
+      <div class="metrics">
+        <div class="metric"><strong>15</strong><span>Systems</span></div>
+        <div class="metric"><strong>74%</strong><span>Patch Compliance</span></div>
+        <div class="metric"><strong>3</strong><span>Critical Findings</span></div>
+        <div class="metric"><strong>1</strong><span>Expired SSL</span></div>
+      </div>
+      <p class="note">Unsupported operating systems, expired SSL, and production approvals require immediate coordination.</p>
+    </article>
+  </section>
+</main>
+</body>
+</html>

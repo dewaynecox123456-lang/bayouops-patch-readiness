@@ -1,0 +1,16 @@
+DataClassification,AssetId,Hostname,Environment,Site,Platform,OS,OSVersion,Criticality,Application,InfrastructureOwner,ApplicationOwner,MaintenanceWindow,RebootApprovalRequired,LastSeenUtc
+DEMO,DEMO-SRV-001,DEMO-WEB-APP-01,Production,Dallas DC1,VMware,Windows Server 2019,10.0.17763,High,Customer Portal,Infrastructure Ops,Web Operations,Saturday 23:00-01:00,Yes,2026-05-24T14:30:00Z
+DEMO,DEMO-SRV-002,DEMO-WEB-APP-02,Production,Dallas DC1,VMware,Windows Server 2019,10.0.17763,High,Customer Portal,Infrastructure Ops,Web Operations,Saturday 23:00-01:00,Yes,2026-05-24T14:31:00Z
+DEMO,DEMO-SRV-003,DEMO-SQL-PROD-01,Production,Dallas DC1,VMware,Windows Server 2016,10.0.14393,Critical,Order Database,Database Services,Order Platform,Sunday 01:00-03:00,Yes,2026-05-24T13:10:00Z
+DEMO,DEMO-SRV-004,DEMO-SQL-PROD-02,Production,Dallas DC1,VMware,Windows Server 2016,10.0.14393,Critical,Order Database,Database Services,Order Platform,Sunday 01:00-03:00,Yes,2026-05-24T13:12:00Z
+DEMO,DEMO-SRV-005,DEMO-API-EDGE-01,Production,Ashburn Edge,Cloud VM,Ubuntu Server 22.04,22.04,High,Public API,Cloud Operations,API Team,Tuesday 02:00-04:00,Yes,2026-05-24T16:20:00Z
+DEMO,DEMO-SRV-006,DEMO-API-EDGE-02,Production,Ashburn Edge,Cloud VM,Ubuntu Server 22.04,22.04,High,Public API,Cloud Operations,API Team,Tuesday 02:00-04:00,Yes,2026-05-24T16:21:00Z
+DEMO,DEMO-SRV-007,DEMO-FILE-LEGACY-01,Production,Dallas DC1,Physical,Windows Server 2012 R2,6.3.9600,Medium,Department File Share,Infrastructure Ops,Corporate Services,Friday 22:00-23:30,Yes,2026-04-18T09:45:00Z
+DEMO,DEMO-SRV-008,DEMO-INTRANET-01,Production,Dallas DC1,VMware,Windows Server 2012,6.2.9200,Medium,Intranet,Infrastructure Ops,Corporate Communications,Saturday 21:00-22:30,Yes,2026-05-07T11:00:00Z
+DEMO,DEMO-SRV-009,DEMO-PAYROLL-01,Production,Dallas DC1,VMware,Windows Server 2022,10.0.20348,Critical,Payroll,Infrastructure Ops,Finance Systems,Sunday 03:00-05:00,Yes,2026-05-24T12:40:00Z
+DEMO,DEMO-SRV-010,DEMO-MONITOR-01,Production,Dallas DC1,VMware,Red Hat Enterprise Linux,9.4,Medium,Monitoring,NOC Operations,Infrastructure Ops,Wednesday 01:00-02:00,No,2026-05-24T15:02:00Z
+DEMO,DEMO-SRV-011,DEMO-DEV-BUILD-01,Development,Dallas Lab,VMware,Ubuntu Server 20.04,20.04,Low,Build Services,Engineering Ops,Platform Engineering,Anytime,No,2026-05-22T10:15:00Z
+DEMO,DEMO-SRV-012,DEMO-QA-WEB-01,QA,Dallas Lab,VMware,Windows Server 2022,10.0.20348,Low,QA Portal,Engineering Ops,QA Team,Thursday 20:00-22:00,No,2026-05-23T18:00:00Z
+DEMO,DEMO-SRV-013,DEMO-CERT-EXP-01,Production,Ashburn Edge,Cloud VM,Ubuntu Server 22.04,22.04,High,Partner Gateway,Cloud Operations,Partner Integrations,Monday 01:00-02:00,Yes,2026-05-24T17:10:00Z
+DEMO,DEMO-SRV-014,DEMO-ARCHIVE-01,Production,Dallas DC1,Physical,Windows Server 2008 R2,6.1.7601,Medium,Archive Search,Infrastructure Ops,Records Management,Friday 20:00-22:00,Yes,2026-03-30T08:00:00Z
+DEMO,DEMO-SRV-015,DEMO-VDI-BROKER-01,Production,Dallas DC1,VMware,Windows Server 2019,10.0.17763,High,VDI Broker,Infrastructure Ops,End User Computing,Saturday 01:00-03:00,Yes,2026-05-24T15:48:00Z

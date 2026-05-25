@@ -1,0 +1,36 @@
+{
+  "dataClassification": "DEMO",
+  "generatedFor": "BayouOps demo environment",
+  "scenarios": [
+    {
+      "name": "Healthy Environment",
+      "status": "Healthy",
+      "readinessScore": 95,
+      "accentColor": "#10b981",
+      "systems": 8,
+      "criticalFindings": 0,
+      "expiredCertificates": 0,
+      "unsupportedSystems": 0
+    },
+    {
+      "name": "Medium-Risk Environment",
+      "status": "Review",
+      "readinessScore": 78,
+      "accentColor": "#f59e0b",
+      "systems": 12,
+      "criticalFindings": 0,
+      "expiredCertificates": 0,
+      "unsupportedSystems": 1
+    },
+    {
+      "name": "Critical-Risk Environment",
+      "status": "Critical",
+      "readinessScore": 46,
+      "accentColor": "#ef4444",
+      "systems": 15,
+      "criticalFindings": 3,
+      "expiredCertificates": 1,
+      "unsupportedSystems": 3
+    }
+  ]
+}

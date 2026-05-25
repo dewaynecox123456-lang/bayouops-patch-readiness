@@ -1,0 +1,9 @@
+DataClassification,Owner,Hostname,Environment,ReadinessStatus,Severity,DueDate,ApprovalRequired,RecommendedAction
+DEMO,Records Management,DEMO-ARCHIVE-01,Production,Critical,Sev1,2026-05-29,Yes,Approve migration or isolate workload
+DEMO,Corporate Communications,DEMO-INTRANET-01,Production,Critical,Sev1,2026-05-29,Yes,Confirm retirement date and renew certificate
+DEMO,Partner Integrations,DEMO-CERT-EXP-01,Production,Risk,Sev1,2026-05-26,Yes,Renew expired certificate and validate connectivity
+DEMO,Corporate Services,DEMO-FILE-LEGACY-01,Production,Critical,Sev2,2026-06-03,Yes,Schedule patch and reboot approval
+DEMO,Order Platform,DEMO-SQL-PROD-01,Production,Review,Sev2,2026-06-02,Yes,Coordinate database reboot approval
+DEMO,End User Computing,DEMO-VDI-BROKER-01,Production,Review,Sev2,2026-06-04,Yes,Coordinate VDI maintenance reboot
+DEMO,API Team,DEMO-API-EDGE-02,Production,Review,Sev3,2026-06-07,Yes,Patch during next edge maintenance window
+DEMO,Platform Engineering,DEMO-DEV-BUILD-01,Development,Review,Sev3,2026-06-10,No,Patch during engineering maintenance window

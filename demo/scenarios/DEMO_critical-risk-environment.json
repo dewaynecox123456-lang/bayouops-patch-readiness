@@ -1,0 +1,16 @@
+{
+  "dataClassification": "DEMO",
+  "scenarioId": "DEMO-SCENARIO-CRITICAL",
+  "title": "Critical-Risk Environment",
+  "executiveStatus": "Critical",
+  "readinessScore": 46,
+  "systemsInScope": 15,
+  "patchCompliancePercent": 74,
+  "criticalFindings": 3,
+  "expiredCertificates": 1,
+  "unsupportedSystems": 3,
+  "staleSystems": 4,
+  "approvalRequiredSystems": 11,
+  "summary": "Unsupported operating systems, expired SSL, stale scans, and production reboot approvals create immediate operational risk.",
+  "recommendedExecutiveAction": "Open a coordinated remediation bridge and assign owners for Sev1 items."
+}

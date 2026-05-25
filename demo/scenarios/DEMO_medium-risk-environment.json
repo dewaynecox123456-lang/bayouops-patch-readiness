@@ -1,0 +1,16 @@
+{
+  "dataClassification": "DEMO",
+  "scenarioId": "DEMO-SCENARIO-MEDIUM",
+  "title": "Medium-Risk Environment",
+  "executiveStatus": "Review",
+  "readinessScore": 78,
+  "systemsInScope": 12,
+  "patchCompliancePercent": 87,
+  "criticalFindings": 0,
+  "expiredCertificates": 0,
+  "unsupportedSystems": 1,
+  "staleSystems": 2,
+  "approvalRequiredSystems": 8,
+  "summary": "The environment can continue normal operations, but production approvals are needed for patch drift, stale ownership validation, and near-term certificate renewals.",
+  "recommendedExecutiveAction": "Approve owner follow-up and schedule maintenance for systems in Review status."
+}

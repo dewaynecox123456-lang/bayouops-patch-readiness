@@ -1,0 +1,16 @@
+DataClassification,Hostname,Environment,ReadinessScore,ReadinessStatus,PatchScore,SslScore,ExposureScore,OwnershipScore,StalenessScore,ExecutiveSummary
+DEMO,DEMO-WEB-APP-01,Production,96,Healthy,98,100,95,95,95,Ready for scheduled maintenance
+DEMO,DEMO-WEB-APP-02,Production,94,Healthy,96,100,92,95,95,Ready with minor patch drift
+DEMO,DEMO-SQL-PROD-01,Production,74,Review,88,100,65,90,80,Production reboot approval required
+DEMO,DEMO-SQL-PROD-02,Production,82,Review,91,100,78,90,90,Patch validation recommended
+DEMO,DEMO-API-EDGE-01,Production,90,Healthy,99,80,90,95,95,Certificate renewal coming due
+DEMO,DEMO-API-EDGE-02,Production,84,Review,94,70,80,95,95,Patch drift and SSL renewal needed
+DEMO,DEMO-FILE-LEGACY-01,Production,48,Critical,62,100,35,80,45,Legacy server requires owner decision
+DEMO,DEMO-INTRANET-01,Production,39,Critical,55,35,30,80,60,Unsupported OS and certificate risk
+DEMO,DEMO-PAYROLL-01,Production,97,Healthy,97,100,98,95,95,Healthy critical business service
+DEMO,DEMO-MONITOR-01,Production,94,Healthy,95,100,95,90,95,Healthy monitoring platform
+DEMO,DEMO-DEV-BUILD-01,Development,78,Review,82,100,72,85,75,Development patch drift
+DEMO,DEMO-QA-WEB-01,QA,81,Review,93,100,82,80,70,QA reboot pending
+DEMO,DEMO-CERT-EXP-01,Production,52,Risk,90,0,45,90,95,Expired SSL requires urgent action
+DEMO,DEMO-ARCHIVE-01,Production,22,Critical,31,100,10,65,20,Unsupported OS and stale scan
+DEMO,DEMO-VDI-BROKER-01,Production,76,Review,89,100,68,90,85,Reboot coordination required

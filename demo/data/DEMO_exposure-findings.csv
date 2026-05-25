@@ -1,0 +1,10 @@
+DataClassification,FindingId,Hostname,Environment,Severity,Category,Finding,Owner,ApprovalRequired,RecommendedAction,Status
+DEMO,DEMO-FIND-001,DEMO-ARCHIVE-01,Production,Sev1,Unsupported OS,Windows Server 2008 R2 is unsupported,Records Management,Yes,Approve migration or isolate workload,Open
+DEMO,DEMO-FIND-002,DEMO-INTRANET-01,Production,Sev1,Unsupported OS,Windows Server 2012 is unsupported,Corporate Communications,Yes,Confirm retirement date and replacement owner,Open
+DEMO,DEMO-FIND-003,DEMO-CERT-EXP-01,Production,Sev1,Expired SSL,Partner gateway certificate expired,Partner Integrations,Yes,Renew certificate and validate partner connectivity,Open
+DEMO,DEMO-FIND-004,DEMO-FILE-LEGACY-01,Production,Sev2,Patch Drift,Multiple critical and security patches missing,Corporate Services,Yes,Schedule patch and reboot approval,Open
+DEMO,DEMO-FIND-005,DEMO-SQL-PROD-01,Production,Sev2,Pending Reboot,Production database has pending reboot,Order Platform,Yes,Coordinate reboot with database owner,Open
+DEMO,DEMO-FIND-006,DEMO-VDI-BROKER-01,Production,Sev2,Pending Reboot,VDI broker has pending reboot,End User Computing,Yes,Coordinate maintenance with service desk,Open
+DEMO,DEMO-FIND-007,DEMO-API-EDGE-02,Production,Sev3,Patch Drift,Minor patch drift on API secondary node,API Team,Yes,Patch during next edge window,Open
+DEMO,DEMO-FIND-008,DEMO-DEV-BUILD-01,Development,Sev3,Patch Drift,Development build host behind patch target,Platform Engineering,No,Patch during engineering maintenance,Open
+DEMO,DEMO-FIND-009,DEMO-INTRANET-01,Production,Sev2,SSL Expiring,Certificate expires in less than 10 days,Corporate Communications,Yes,Renew certificate before production change freeze,Open

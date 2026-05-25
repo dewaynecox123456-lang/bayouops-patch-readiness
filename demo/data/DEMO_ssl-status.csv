@@ -1,0 +1,8 @@
+DataClassification,ServiceName,Hostname,Endpoint,Environment,CertificateCommonName,Issuer,ExpiresUtc,DaysRemaining,SslStatus,Owner,RecommendedAction
+DEMO,Customer Portal,DEMO-WEB-APP-01,https://demo-portal.example.test,Production,demo-portal.example.test,Demo Public CA,2026-09-15T23:59:59Z,113,Healthy,Web Operations,No action
+DEMO,Customer Portal Secondary,DEMO-WEB-APP-02,https://demo-portal-dr.example.test,Production,demo-portal-dr.example.test,Demo Public CA,2026-08-21T23:59:59Z,88,Healthy,Web Operations,No action
+DEMO,Public API,DEMO-API-EDGE-01,https://demo-api.example.test,Production,demo-api.example.test,Demo Public CA,2026-07-03T23:59:59Z,39,Expiring,API Team,Renew in next maintenance window
+DEMO,Public API Secondary,DEMO-API-EDGE-02,https://demo-api-dr.example.test,Production,demo-api-dr.example.test,Demo Public CA,2026-06-18T23:59:59Z,24,Expiring,API Team,Renew before month end
+DEMO,Partner Gateway,DEMO-CERT-EXP-01,https://demo-partner.example.test,Production,demo-partner.example.test,Demo Public CA,2026-05-20T23:59:59Z,-5,Expired,Partner Integrations,Emergency renewal required
+DEMO,Intranet,DEMO-INTRANET-01,https://demo-intranet.example.test,Production,demo-intranet.example.test,Demo Internal CA,2026-06-02T23:59:59Z,8,Expiring,Corporate Communications,Renew and validate legacy cipher settings
+DEMO,Payroll,DEMO-PAYROLL-01,https://demo-payroll.example.test,Production,demo-payroll.example.test,Demo Internal CA,2026-11-30T23:59:59Z,189,Healthy,Finance Systems,No action

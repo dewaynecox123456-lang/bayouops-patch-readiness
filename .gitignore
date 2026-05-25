@@ -20,5 +20,9 @@ build/
 exports/
 archive/
 
+# Keep synthetic demo export fixtures reviewable while real generated exports stay ignored.
+!demo/exports/
+!demo/exports/**
+
 # Local operator runtime overrides
 config/bayouops.env

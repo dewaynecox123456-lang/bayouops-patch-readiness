@@ -1,0 +1,16 @@
+{
+  "dataClassification": "DEMO",
+  "scenarioId": "DEMO-SCENARIO-HEALTHY",
+  "title": "Healthy Environment",
+  "executiveStatus": "Healthy",
+  "readinessScore": 95,
+  "systemsInScope": 8,
+  "patchCompliancePercent": 97,
+  "criticalFindings": 0,
+  "expiredCertificates": 0,
+  "unsupportedSystems": 0,
+  "staleSystems": 0,
+  "approvalRequiredSystems": 5,
+  "summary": "Production systems are within readiness target. Minor patch drift and certificate renewals are scheduled inside approved windows.",
+  "recommendedExecutiveAction": "Proceed with normal maintenance cadence."
+}

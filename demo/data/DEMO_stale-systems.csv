@@ -1,0 +1,5 @@
+DataClassification,Hostname,Environment,LastSeenUtc,DaysSinceSeen,LastPatchScanUtc,DaysSincePatchScan,OwnerValidatedUtc,DaysSinceOwnerValidation,StaleReason,RecommendedAction
+DEMO,DEMO-FILE-LEGACY-01,Production,2026-04-18T09:45:00Z,37,2026-04-18T10:00:00Z,37,2026-02-12T15:00:00Z,102,Patch and owner validation stale,Validate ownership and schedule maintenance review
+DEMO,DEMO-INTRANET-01,Production,2026-05-07T11:00:00Z,18,2026-05-07T11:15:00Z,18,2026-03-01T12:00:00Z,85,Owner validation stale,Confirm application owner before remediation
+DEMO,DEMO-ARCHIVE-01,Production,2026-03-30T08:00:00Z,56,2026-03-30T08:15:00Z,56,2026-01-20T13:30:00Z,125,Asset and patch data stale,Confirm system status and migration owner
+DEMO,DEMO-DEV-BUILD-01,Development,2026-05-22T10:15:00Z,3,2026-05-22T10:30:00Z,3,2026-02-28T09:00:00Z,86,Owner validation stale,Refresh owner metadata

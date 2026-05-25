@@ -1,0 +1,16 @@
+DataClassification,Hostname,Environment,PatchCompliancePercent,MissingCriticalPatches,MissingSecurityPatches,PendingReboot,LastPatchScanUtc,PatchStatus,ExecutiveNote
+DEMO,DEMO-WEB-APP-01,Production,98,0,1,No,2026-05-24T14:35:00Z,Compliant,Healthy patch posture
+DEMO,DEMO-WEB-APP-02,Production,96,0,2,No,2026-05-24T14:36:00Z,Compliant,Minor drift
+DEMO,DEMO-SQL-PROD-01,Production,88,1,5,Yes,2026-05-24T13:20:00Z,Review,Pending reboot requires approval
+DEMO,DEMO-SQL-PROD-02,Production,91,0,4,No,2026-05-24T13:21:00Z,Review,Schedule patch validation
+DEMO,DEMO-API-EDGE-01,Production,99,0,0,No,2026-05-24T16:25:00Z,Compliant,Current
+DEMO,DEMO-API-EDGE-02,Production,94,0,3,No,2026-05-24T16:26:00Z,Review,Patch drift under review
+DEMO,DEMO-FILE-LEGACY-01,Production,62,5,18,Yes,2026-04-18T10:00:00Z,Risk,Legacy OS limits patch posture
+DEMO,DEMO-INTRANET-01,Production,55,7,24,Yes,2026-05-07T11:15:00Z,Critical,Unsupported OS requires migration plan
+DEMO,DEMO-PAYROLL-01,Production,97,0,1,No,2026-05-24T12:50:00Z,Compliant,Healthy payroll window
+DEMO,DEMO-MONITOR-01,Production,95,0,2,No,2026-05-24T15:10:00Z,Compliant,Healthy monitoring platform
+DEMO,DEMO-DEV-BUILD-01,Development,82,1,8,No,2026-05-22T10:30:00Z,Review,Development patch drift
+DEMO,DEMO-QA-WEB-01,QA,93,0,3,Yes,2026-05-23T18:10:00Z,Review,QA reboot pending
+DEMO,DEMO-CERT-EXP-01,Production,90,0,5,No,2026-05-24T17:15:00Z,Review,Patch posture acceptable but SSL risk open
+DEMO,DEMO-ARCHIVE-01,Production,31,11,42,Yes,2026-03-30T08:15:00Z,Critical,Unsupported OS and stale scan
+DEMO,DEMO-VDI-BROKER-01,Production,89,1,4,Yes,2026-05-24T15:55:00Z,Review,Coordinate VDI maintenance reboot

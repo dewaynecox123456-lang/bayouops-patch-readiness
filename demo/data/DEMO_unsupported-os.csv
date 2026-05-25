@@ -1,0 +1,4 @@
+DataClassification,Hostname,Environment,OS,OSVersion,SupportStatus,OperationalRisk,Owner,RecommendedAction,TargetDisposition
+DEMO,DEMO-ARCHIVE-01,Production,Windows Server 2008 R2,6.1.7601,Unsupported,Critical exposure and limited patch availability,Records Management,Migrate archive workload or isolate system,Retire by 2026-07-31
+DEMO,DEMO-INTRANET-01,Production,Windows Server 2012,6.2.9200,Unsupported,Unsupported platform and SSL renewal friction,Corporate Communications,Move intranet workload to supported OS,Migrate by 2026-06-30
+DEMO,DEMO-FILE-LEGACY-01,Production,Windows Server 2012 R2,6.3.9600,Unsupported,Legacy file share with patch drift,Corporate Services,Confirm data owner and migrate shares,Migrate by 2026-08-15
