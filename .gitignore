@@ -19,3 +19,6 @@ reports/
 build/
 exports/
 archive/
+
+# Local operator runtime overrides
+config/bayouops.env

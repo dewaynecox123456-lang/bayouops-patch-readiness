@@ -4,8 +4,16 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-HOST="127.0.0.1"
-PORT="8088"
+CONFIG_FILE="${BAYOUOPS_CONFIG:-$PROJECT_ROOT/config/bayouops.env}"
+
+if [ -f "$CONFIG_FILE" ]; then
+  # Operators can keep local bind settings outside source control for safer site-specific defaults.
+  # shellcheck disable=SC1090
+  source "$CONFIG_FILE"
+fi
+
+HOST="${BAYOUOPS_HOST:-127.0.0.1}"
+PORT="${BAYOUOPS_PORT:-8088}"
 
 cd "$PROJECT_ROOT"
 
