@@ -1,0 +1,26 @@
+{
+  "product": "BayouOps Patch Readiness",
+  "product_short": "BayouOps",
+  "latest_version": "0.1.1-EarlyAccess",
+  "release_date": "2026-05-26",
+  "release_channel": "EarlyAccess",
+  "author": {
+    "name": "Dewayne Cox",
+    "organization": "BayouFinds",
+    "website": "https://bayoufinds.com",
+    "github": "https://github.com/dewaynecox123456-lang"
+  },
+  "download_url": "https://github.com/dewaynecox123456-lang/bayouops-patch-readiness/releases",
+  "notes_url": "https://github.com/dewaynecox123456-lang/bayouops-patch-readiness/blob/main/CHANGELOG.md",
+  "support_url": "https://bayoufinds.com",
+  "critical": false,
+  "message": "Maintenance release with packaging and documentation cleanup.",
+  "minimum_supported_version": "0.1.0-EarlyAccess",
+  "update_model": "manual-download",
+  "platform": [
+    "Linux",
+    "Fedora",
+    "PowerShell",
+    "Local-First"
+  ]
+}
