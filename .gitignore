@@ -26,3 +26,6 @@ archive/
 
 # Local operator runtime overrides
 config/bayouops.env
+
+# Generated release artifacts
+release/
