@@ -7,7 +7,7 @@
   "scripts": {
     "start": "./scripts/bayouops-start.sh",
     "serve": "./scripts/serve.sh",
-    "test": "bash -n scripts/*.sh && find tools -name '*.mjs' -print0 | xargs -0 -n1 node --check",
+    "test": "bash -n scripts/*.sh && find tools -name '*.mjs' -print0 | xargs -0 -n1 node --check && ./scripts/release-smoke-test.sh",
     "build-release": "./scripts/build-release.sh"
   }
 }
