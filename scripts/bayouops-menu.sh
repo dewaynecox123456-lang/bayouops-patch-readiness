@@ -18,7 +18,7 @@ while true; do
   echo "[2] Generate Trend Data"
   echo "[3] Generate Trend Dashboard"
   echo "[4] Build Release Package"
-  echo "[5] Exposure Check (placeholder)"
+  echo "[5] Run Exposure Check"
   echo
   echo "[7] Import Operational Context CSV"
   echo "[8] Asset Lookup"
@@ -43,14 +43,17 @@ while true; do
       ;;
 
     4)
-      echo
-      echo "[INFO] Build release package placeholder..."
+      ./scripts/build-release.sh
       read -rp "Press ENTER to continue..."
       ;;
 
     5)
-      echo
-      echo "[INFO] Exposure placeholder..."
+      if [[ -f "tools/exposure-check.mjs" ]]; then
+        node tools/exposure-check.mjs
+      else
+        echo
+        echo "[WARN] Exposure check tool not found."
+      fi
       read -rp "Press ENTER to continue..."
       ;;
 
