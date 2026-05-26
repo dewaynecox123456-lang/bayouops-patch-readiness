@@ -1,6 +1,6 @@
 {
   "name": "bayouops-patch-readiness",
-  "version": "0.1.0",
+  "version": "0.1.0-EarlyAccess",
   "private": true,
   "description": "Local-first operational readiness intelligence tooling for infrastructure teams.",
   "type": "module",
