@@ -140,6 +140,20 @@ The demo environment includes:
 
 Start with `demo/README.md`, then use `docs/DEMO_WALKTHROUGH.md` for a guided presentation path.
 
+## Demo Assets
+
+BayouOps Suite Pro includes a local-only synthetic demo asset pack for product screenshots, README visuals, Payhip sales assets, and walkthroughs. It contains healthy, medium-risk, and critical scenarios plus Windows audit, Linux health, patch readiness, SSL forecast, AD privileged access, and exportable evidence examples.
+
+```bash
+npm run demo:seed
+npm run demo:exports
+npm run demo:serve
+```
+
+The screenshot-ready dashboard is generated at `demo/dashboards/DEMO_executive-dashboard.html` and is designed for a 1280x720 capture. Demo data and exports are written under `demo/data/` and `demo/exports/`; `demo/screenshots/` is reserved for captured product-page images.
+
+All demo records are synthetic and marked as demo data. The demo server binds to `127.0.0.1` by default, makes no cloud calls, and includes no real credentials.
+
 ## Additional Operational Views
 
 ### Critical Risk Scenario
