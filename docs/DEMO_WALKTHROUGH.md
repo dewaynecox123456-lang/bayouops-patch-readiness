@@ -1,6 +1,6 @@
 # Demo Walkthrough
 
-This walkthrough uses synthetic assets under `demo/`. Do not mix production reports or customer data into the demo flow.
+This walkthrough uses synthetic assets under `demo/`. Keep the demo path separate from production reports or customer data.
 
 ## Audience
 
@@ -13,7 +13,7 @@ The walkthrough is designed for:
 
 ## Setup
 
-Review the demo files:
+Start by confirming the demo assets are present:
 
 ```bash
 ls demo/data
@@ -21,94 +21,108 @@ ls demo/scenarios
 ls demo/exports
 ```
 
-Open the static scenario preview:
+Serve the repository locally:
 
 ```bash
 npm run serve
 ```
 
-Then browse to the local demo dashboard file under:
+Then open the executive scenario dashboard:
 
 ```text
 demo/dashboards/DEMO_executive-dashboard-scenarios.html
 ```
 
-The static server defaults to `127.0.0.1`.
+The static server defaults to `127.0.0.1`, keeping the demo local to the operator workstation unless explicitly changed.
 
 ## Demo Path
 
-1. Start with the executive scenarios.
-   - Healthy environment: readiness is strong and work can proceed normally.
+Use this sequence for a focused 5-10 minute walkthrough.
+
+1. Open with the executive scenarios.
+
+   Start at `demo/dashboards/DEMO_executive-dashboard-scenarios.html`. Frame the dashboard as a readiness briefing: healthy, medium-risk, and critical-risk examples show how the same environment can be summarized for review before a maintenance window or stakeholder update.
+
+   Point out the progression:
+
+   - Healthy environment: work can proceed normally.
    - Medium-risk environment: maintenance can continue, but owner follow-up is needed.
-   - Critical-risk environment: immediate coordination is needed for Sev1 issues.
+   - Critical-risk environment: Sev1 issues require immediate coordination.
 
-2. Move to the owner worklist.
-   - Use `demo/exports/DEMO_owner-worklist.csv`.
-   - Show how findings become assignable work.
-   - Emphasize owner, due date, approval requirement, and recommended action.
+2. Move from summary to ownership.
 
-3. Review operational evidence.
-   - Use `demo/data/DEMO_patch-compliance.csv`.
-   - Use `demo/data/DEMO_ssl-status.csv`.
-   - Use `demo/data/DEMO_exposure-findings.csv`.
-   - Use `demo/data/DEMO_stale-systems.csv`.
-   - Use `demo/data/DEMO_unsupported-os.csv`.
+   Open `demo/exports/DEMO_owner-worklist.csv`. Show how dashboard findings become assignable work outside the tool. Focus on owner, due date, approval requirement, and recommended action.
 
-4. Close with safety boundaries.
-   - BayouOps does not patch, reboot, remediate, or enforce policy.
-   - It produces coordination intelligence and local reports.
+   Transition point:
+   BayouOps is not trying to take action on systems. It helps operators identify who needs to review, approve, validate, or schedule the next step.
+
+3. Review the supporting evidence.
+
+   Use the CSV evidence files to show that the summary is backed by operational data:
+
+   - `demo/data/DEMO_patch-compliance.csv`
+   - `demo/data/DEMO_ssl-status.csv`
+   - `demo/data/DEMO_exposure-findings.csv`
+   - `demo/data/DEMO_stale-systems.csv`
+   - `demo/data/DEMO_unsupported-os.csv`
+
+   Do not walk every row. Pick one or two examples that connect back to the executive scenario and owner worklist.
+
+4. Close with the operating boundary.
+
+   BayouOps produces local reports, worklists, and coordination intelligence. It does not patch, reboot, remediate, enforce policy, or replace the systems that perform those actions.
 
 ## Narrative: Patch Drift
 
-Patch drift is the gap between expected patch posture and current system state.
+Patch drift is the gap between expected patch posture and current system state. In a live walkthrough, use this section to show how BayouOps separates routine patch follow-up from approval-sensitive production work.
 
-In the demo data:
+Useful demo examples:
 
 - `DEMO-SQL-PROD-01` has a pending reboot and requires production approval.
 - `DEMO-FILE-LEGACY-01` has multiple missing critical and security patches.
 - `DEMO-DEV-BUILD-01` shows lower-risk development patch drift.
 
-Operational point:
-BayouOps helps separate routine patch drift from approval-sensitive production work. The output should help teams decide who owns the next action and which maintenance window applies.
+Presentation point:
+The value is not automatic patching. The value is a clear owner-aware view of which systems need review, which systems need approval, and which maintenance window applies.
 
 ## Narrative: SSL Expiration Risk
 
-SSL expiration risk is operational risk caused by certificates that are expired or approaching expiration.
+SSL expiration risk is operational risk caused by certificates that are expired or approaching expiration. Present it as coordination work between service owners, infrastructure owners, and change windows.
 
-In the demo data:
+Useful demo examples:
 
 - `DEMO-CERT-EXP-01` has an expired partner gateway certificate.
 - `DEMO-API-EDGE-02` has a certificate expiring soon.
 - `DEMO-INTRANET-01` combines SSL expiration pressure with unsupported OS risk.
 
-Operational point:
-BayouOps frames SSL risk as coordination work: identify owner, service impact, approval needs, and renewal window.
+Presentation point:
+The dashboard should lead to practical questions: who owns the service, what is the impact, when can renewal happen, and who needs to validate the result?
 
 ## Narrative: Unsupported Systems
 
-Unsupported systems are assets running operating systems that no longer have normal vendor support.
+Unsupported systems are assets running operating systems that no longer have normal vendor support. Use this section to show that BayouOps treats unsupported platforms as planning and risk-decision items, not simple patch tasks.
 
-In the demo data:
+Useful demo examples:
 
 - `DEMO-ARCHIVE-01` runs Windows Server 2008 R2.
 - `DEMO-INTRANET-01` runs Windows Server 2012.
 - `DEMO-FILE-LEGACY-01` runs Windows Server 2012 R2.
 
-Operational point:
-Unsupported systems are rarely fixed by a single patch action. They usually require migration planning, isolation, owner approval, or explicit risk acceptance.
+Presentation point:
+Unsupported systems usually require migration planning, isolation, owner approval, or explicit risk acceptance. BayouOps makes those candidates visible for review.
 
 ## Narrative: Stale Infrastructure
 
-Stale infrastructure is infrastructure whose operational state is old or poorly validated.
+Stale infrastructure is infrastructure whose operational state is old or poorly validated. Present this as operational uncertainty: the team cannot make confident decisions when check-ins, patch scans, or owner validation are stale.
 
-In the demo data:
+Useful demo examples:
 
 - `DEMO-ARCHIVE-01` has stale check-in and patch scan data.
 - `DEMO-FILE-LEGACY-01` has stale patch and owner validation data.
 - `DEMO-DEV-BUILD-01` has stale owner validation even though it is lower criticality.
 
-Operational point:
-Stale systems create uncertainty. BayouOps makes that uncertainty visible so operators can refresh ownership, validate system status, or remove dead inventory.
+Presentation point:
+BayouOps helps operators identify where the inventory itself needs review before the team relies on it for maintenance planning.
 
 ## What To Avoid Saying
 

@@ -1,6 +1,6 @@
 # Operator Quickstart
 
-This quickstart is for operators running BayouOps locally on Fedora or another Linux workstation.
+This quickstart is for operators running BayouOps from a local checkout on Fedora or another Linux workstation.
 
 BayouOps is a local-first visibility and coordination tool. It does not patch, reboot, remediate, or enforce endpoint policy.
 
@@ -29,19 +29,19 @@ Install missing tools with the normal system package workflow for your workstati
 
 ## First Run
 
-From the repository root:
+Run commands from the repository root. Start with the syntax checks so the local checkout is known-good before generating reports or starting the static server:
 
 ```bash
 npm test
 ```
 
-Start the local workflow:
+Start the local workflow when you are ready to run the operational cycle and open the local report server:
 
 ```bash
 npm start
 ```
 
-Serve static dashboards and demo files:
+If you only need to browse existing static dashboards or demo files, start the local static server directly:
 
 ```bash
 npm run serve
@@ -52,6 +52,8 @@ The local static server defaults to:
 ```text
 http://127.0.0.1:8088
 ```
+
+Generated output stays in the working directory unless an operator intentionally copies, archives, or packages it.
 
 ## Local Host and Port
 
@@ -77,25 +79,27 @@ Keep `config/bayouops.env` local. Do not commit operator-specific bind settings.
 
 ## Common Operator Commands
 
-Run syntax checks:
+Use these commands for routine local operation.
+
+Run syntax checks before sharing or packaging work:
 
 ```bash
 npm test
 ```
 
-Open the terminal menu:
+Open the terminal menu for guided local workflows:
 
 ```bash
 ./scripts/bayouops-menu.sh
 ```
 
-Query an asset:
+Query an asset from the operational context registry:
 
 ```bash
 node tools/query-assets.mjs SQL-PROD-01
 ```
 
-Run the demo workflow:
+Run the static demo workflow:
 
 ```bash
 ./scripts/run-demo.sh
@@ -115,7 +119,7 @@ Build a demo release:
 
 ## Demo Materials
 
-Synthetic demo assets are under:
+Synthetic demo assets are kept separate from runtime operational data:
 
 ```text
 demo/
@@ -129,11 +133,11 @@ Useful starting points:
 - `demo/exports/DEMO_owner-worklist.csv`
 - `docs/DEMO_WALKTHROUGH.md`
 
-All demo data should remain clearly marked as DEMO.
+Keep demo records clearly marked as DEMO and separate from customer or production reports.
 
 ## Release Validation
 
-Before sharing a ZIP:
+Before sharing a ZIP, validate the checkout and inspect the package contents:
 
 ```bash
 git status --short --branch
@@ -142,7 +146,7 @@ npm test
 zipinfo release/BayouOps_DEMO_*.zip | less
 ```
 
-Confirm the ZIP does not contain:
+Confirm the ZIP does not contain operational or private material:
 
 - Real inventory from `incoming/`
 - Private `config/bayouops.env`
