@@ -12,41 +12,6 @@ Operational Coordination Intelligence for Infrastructure Teams
 
 ---
 
-\n## What BayouOps Demonstrates
-
-BayouOps is a lightweight operational readiness and infrastructure visibility platform focused on:
-
-- operational posture awareness
-- patch readiness tracking
-- SSL expiration visibility
-- unsupported system identification
-- stale infrastructure detection
-- executive-facing operational summaries
-
-The project intentionally avoids remediation claims or heavy automation assumptions and instead focuses on practical operational visibility and review workflows.
-
-## Operational Showcase
-
-### Executive Readiness Overview
-
-![Executive Overview](screenshots/demo-showcase/01-executive-overview.png)
-
-### Critical Risk Scenario
-
-![Critical Risk](screenshots/demo-showcase/02-critical-risk-view.png)
-
-### Patch Compliance Visibility
-
-![Patch Compliance](screenshots/demo-showcase/03-patch-compliance.png)
-
-### SSL Risk Tracking
-
-![SSL Risk](screenshots/demo-showcase/04-ssl-risk.png)
-
-### Unsupported & Stale Infrastructure
-
-![Unsupported Systems](screenshots/demo-showcase/05-stale-and-unsupported.png)
-
 ## What BayouOps Is
 
 BayouOps is a lightweight, local-first operational readiness tool for infrastructure teams. It helps teams turn inventory, ownership, patch posture, SSL status, exposure findings, and operational notes into dashboards and worklists.
@@ -59,6 +24,23 @@ BayouOps is intended to be understandable to:
 - MSP operators who need owner-aware worklists and repeatable customer review artifacts.
 - IT managers who need concise readiness and risk summaries.
 - Recruiters or reviewers who want to understand the engineering shape of the project quickly.
+
+## What BayouOps Demonstrates
+
+BayouOps is a lightweight operational readiness and infrastructure visibility platform focused on:
+
+- operational posture awareness
+- patch readiness tracking
+- SSL expiration visibility
+- unsupported system identification
+- stale infrastructure detection
+- executive-facing operational summaries
+
+The project intentionally avoids remediation claims or heavy automation assumptions and instead focuses on practical operational visibility and review workflows.
+
+## Executive Readiness Overview
+
+![Executive Overview](screenshots/demo-showcase/01-executive-overview.png)
 
 ## What BayouOps Is Not
 
@@ -157,6 +139,24 @@ The demo environment includes:
 - Healthy, medium-risk, and critical-risk executive scenarios
 
 Start with `demo/README.md`, then use `docs/DEMO_WALKTHROUGH.md` for a guided presentation path.
+
+## Additional Operational Views
+
+### Critical Risk Scenario
+
+![Critical Risk](screenshots/demo-showcase/02-critical-risk-view.png)
+
+### Patch Compliance Visibility
+
+![Patch Compliance](screenshots/demo-showcase/03-patch-compliance.png)
+
+### SSL Risk Tracking
+
+![SSL Risk](screenshots/demo-showcase/04-ssl-risk.png)
+
+### Unsupported & Stale Infrastructure
+
+![Unsupported Systems](screenshots/demo-showcase/05-stale-and-unsupported.png)
 
 ## Operational Narratives
 
